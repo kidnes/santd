@@ -41,15 +41,6 @@ export default san.defineComponent({
             <demo/>
             <desc/>
             <basic/>
-            <gutter/>
-            <sort/>
-            <offset/>
-            <flex/>
-            <flexalign/>
-            <flexorder/>
-            <responsive/>
-            <responsivemore/>
-            <gutterconfig/>
             <readme/>
         </div>
     `

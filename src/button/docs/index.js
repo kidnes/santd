@@ -37,11 +37,6 @@ export default san.defineComponent({
             <icon/>
             <disable/>
             <size/>
-            <loading/>
-            <group/>
-            <combo/>
-            <block/>
-            <ghost/>
             <readme/>
         </div>
     `

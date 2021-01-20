@@ -18,8 +18,6 @@ export default san.defineComponent({
     template: `
         <div>
             <head/>
-            <basic/>
-            <offset/>
             <readme/>
         </div>
     `

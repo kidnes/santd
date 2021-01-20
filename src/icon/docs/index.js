@@ -23,9 +23,6 @@ export default san.defineComponent({
             <desc/>
             <icondisplay/>
             <basic/>
-            <colors/>
-            <script/>
-            <readme/>
         </div>
     `
 });

@@ -1,7 +1,6 @@
-<text lang="cn">
+<codebox>
 #### 固定状态改变的回调
 可以获得是否固定的状态。
-</text>
 
 ```html
 <template>
@@ -26,3 +25,4 @@ export default {
 }
 </script>
 ```
+</codebox>
