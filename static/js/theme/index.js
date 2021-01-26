@@ -57,8 +57,8 @@
 /******/ 	// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 	// Promise = chunk loading, 0 = chunk loaded
 /******/ 	var installedChunks = {
-/******/ 		15: 0,
-/******/ 		27: 0
+/******/ 		12: 0,
+/******/ 		21: 0
 /******/ 	};
 /******/
 /******/ 	var deferredModules = [];
@@ -87,6 +87,12 @@
 /******/ 		return module.exports;
 /******/ 	}
 /******/
+/******/ 	// The chunk loading function for additional chunks
+/******/ 	// Since all referenced chunks are already included
+/******/ 	// in this file, this function is empty here.
+/******/ 	__webpack_require__.e = function requireEnsure() {
+/******/ 		return Promise.resolve();
+/******/ 	};
 /******/
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
@@ -149,34 +155,24 @@
 /******/
 /******/
 /******/ 	// add entry module to deferred list
-/******/ 	deferredModules.push([213,0]);
+/******/ 	deferredModules.push([121,0]);
 /******/ 	// run deferred modules when ready
 /******/ 	return checkDeferredModules();
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 158:
-/***/ (function(module, exports) {
-
-// Module
-var code = " <div class=\"content\"><div class=\"markdown\"><h1 id=\"%E5%AE%9A%E5%88%B6%E4%B8%BB%E9%A2%98\"><a class=\"header-anchor\" href=\"#%E5%AE%9A%E5%88%B6%E4%B8%BB%E9%A2%98\">#</a> 定制主题</h1> <p>Santd 的组件结构及样式和 Antd React 完全一致，你可以参考 Antd React 的定制方式进行配置。</p> <p>Ant Design 设计规范和技术上支持灵活的样式定制，以满足业务和品牌上多样化的视觉需求，包括但不限于全局样式（主色、圆角、边框）和指定组件的视觉定制。</p> <p><img src=\"https://zos.alipayobjects.com/rmsportal/zTFoszBtDODhXfLAazfSpYbSLSEeytoG.png\" alt=\"theme\"/></p> <h2 id=\"ant-design-san-%E7%9A%84%E6%A0%B7%E5%BC%8F%E5%8F%98%E9%87%8F\"><a class=\"header-anchor\" href=\"#ant-design-san-%E7%9A%84%E6%A0%B7%E5%BC%8F%E5%8F%98%E9%87%8F\">#</a> Ant Design San 的样式变量</h2> <p>antd 的样式使用了 <a href=\"http://lesscss.org/\">Less</a> 作为开发语言，并定义了一系列全局/组件的样式变量，你可以根据需求进行相应调整。</p> <p>以下是一些最常用的通用变量，所有样式变量可以在 <a href=\"https://github.com/ecomfe/santd/blob/master/src/core/styles/themes/default.less\">这里</a> 找到。</p> <pre class=\"language-javascript\"><code class=\"language-javascript\">@primary<span class=\"token operator\">-</span>color<span class=\"token operator\">:</span> #<span class=\"token number\">1890</span>ff<span class=\"token punctuation\">;</span> <span class=\"token comment\">// 全局主色</span>\n@link<span class=\"token operator\">-</span>color<span class=\"token operator\">:</span> #<span class=\"token number\">1890</span>ff<span class=\"token punctuation\">;</span> <span class=\"token comment\">// 链接色</span>\n@success<span class=\"token operator\">-</span>color<span class=\"token operator\">:</span> #<span class=\"token number\">52</span>c41a<span class=\"token punctuation\">;</span> <span class=\"token comment\">// 成功色</span>\n@warning<span class=\"token operator\">-</span>color<span class=\"token operator\">:</span> #faad14<span class=\"token punctuation\">;</span> <span class=\"token comment\">// 警告色</span>\n@error<span class=\"token operator\">-</span>color<span class=\"token operator\">:</span> #f5222d<span class=\"token punctuation\">;</span> <span class=\"token comment\">// 错误色</span>\n@font<span class=\"token operator\">-</span>size<span class=\"token operator\">-</span>base<span class=\"token operator\">:</span> <span class=\"token number\">14</span>px<span class=\"token punctuation\">;</span> <span class=\"token comment\">// 主字号</span>\n@heading<span class=\"token operator\">-</span>color<span class=\"token operator\">:</span> <span class=\"token function\">rgba</span><span class=\"token punctuation\">(</span><span class=\"token number\">0</span><span class=\"token punctuation\">,</span> <span class=\"token number\">0</span><span class=\"token punctuation\">,</span> <span class=\"token number\">0</span><span class=\"token punctuation\">,</span> <span class=\"token number\">0.85</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">;</span> <span class=\"token comment\">// 标题色</span>\n@text<span class=\"token operator\">-</span>color<span class=\"token operator\">:</span> <span class=\"token function\">rgba</span><span class=\"token punctuation\">(</span><span class=\"token number\">0</span><span class=\"token punctuation\">,</span> <span class=\"token number\">0</span><span class=\"token punctuation\">,</span> <span class=\"token number\">0</span><span class=\"token punctuation\">,</span> <span class=\"token number\">0.65</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">;</span> <span class=\"token comment\">// 主文本色</span>\n@text<span class=\"token operator\">-</span>color<span class=\"token operator\">-</span>secondary <span class=\"token operator\">:</span> <span class=\"token function\">rgba</span><span class=\"token punctuation\">(</span><span class=\"token number\">0</span><span class=\"token punctuation\">,</span> <span class=\"token number\">0</span><span class=\"token punctuation\">,</span> <span class=\"token number\">0</span><span class=\"token punctuation\">,</span> <span class=\"token number\">.45</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">;</span> <span class=\"token comment\">// 次文本色</span>\n@disabled<span class=\"token operator\">-</span>color <span class=\"token operator\">:</span> <span class=\"token function\">rgba</span><span class=\"token punctuation\">(</span><span class=\"token number\">0</span><span class=\"token punctuation\">,</span> <span class=\"token number\">0</span><span class=\"token punctuation\">,</span> <span class=\"token number\">0</span><span class=\"token punctuation\">,</span> <span class=\"token number\">.25</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">;</span> <span class=\"token comment\">// 失效色</span>\n@border<span class=\"token operator\">-</span>radius<span class=\"token operator\">-</span>base<span class=\"token operator\">:</span> <span class=\"token number\">4</span>px<span class=\"token punctuation\">;</span> <span class=\"token comment\">// 组件/浮层圆角</span>\n@border<span class=\"token operator\">-</span>color<span class=\"token operator\">-</span>base<span class=\"token operator\">:</span> #d9d9d9<span class=\"token punctuation\">;</span> <span class=\"token comment\">// 边框色</span>\n@box<span class=\"token operator\">-</span>shadow<span class=\"token operator\">-</span>base<span class=\"token operator\">:</span> <span class=\"token number\">0</span> <span class=\"token number\">2</span>px <span class=\"token number\">8</span>px <span class=\"token function\">rgba</span><span class=\"token punctuation\">(</span><span class=\"token number\">0</span><span class=\"token punctuation\">,</span> <span class=\"token number\">0</span><span class=\"token punctuation\">,</span> <span class=\"token number\">0</span><span class=\"token punctuation\">,</span> <span class=\"token number\">0.15</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">;</span> <span class=\"token comment\">// 浮层阴影</span></code></pre> <p>如果以上变量不能满足你的定制需求，可以给我们提 issue。</p> <h2 id=\"%E5%AE%9A%E5%88%B6%E6%96%B9%E5%BC%8F\"><a class=\"header-anchor\" href=\"#%E5%AE%9A%E5%88%B6%E6%96%B9%E5%BC%8F\">#</a> 定制方式</h2> <p>原理上是使用 less 提供的 <a href=\"http://lesscss.org/usage/#using-less-in-the-browser-modify-variables\">modifyVars</a> 的方式进行覆盖变量。下面将针对不同的场景提供一些常用的定制方式。</p> <h3 id=\"%E5%9C%A8-webpack-%E4%B8%AD%E5%AE%9A%E5%88%B6%E4%B8%BB%E9%A2%98\"><a class=\"header-anchor\" href=\"#%E5%9C%A8-webpack-%E4%B8%AD%E5%AE%9A%E5%88%B6%E4%B8%BB%E9%A2%98\">#</a> 在 webpack 中定制主题</h3> <p>我们以 webpack@4 为例进行说明，以下是一个 webpack.config.js 的典型例子，对 <a href=\"https://github.com/webpack-contrib/less-loader\">less-loader</a> 的 options 属性进行相应配置。</p> <pre class=\"language-javascript\"><code class=\"language-javascript\"><span class=\"token comment\">// webpack.config.js</span>\nmodule<span class=\"token punctuation\">.</span>exports <span class=\"token operator\">=</span> <span class=\"token punctuation\">{</span>\n    rules<span class=\"token operator\">:</span> <span class=\"token punctuation\">[</span><span class=\"token punctuation\">{</span>\n        test<span class=\"token operator\">:</span> <span class=\"token regex\"><span class=\"token regex-delimiter\">/</span><span class=\"token regex-source language-regex\">\\.less$</span><span class=\"token regex-delimiter\">/</span></span><span class=\"token punctuation\">,</span>\n        use<span class=\"token operator\">:</span> <span class=\"token punctuation\">[</span><span class=\"token punctuation\">{</span>\n            loader<span class=\"token operator\">:</span> <span class=\"token string\">'style-loader'</span><span class=\"token punctuation\">,</span>\n        <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span> <span class=\"token punctuation\">{</span>\n            loader<span class=\"token operator\">:</span> <span class=\"token string\">'css-loader'</span><span class=\"token punctuation\">,</span> <span class=\"token comment\">// translates CSS into CommonJS</span>\n        <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span> <span class=\"token punctuation\">{</span>\n            loader<span class=\"token operator\">:</span> <span class=\"token string\">'less-loader'</span><span class=\"token punctuation\">,</span> <span class=\"token comment\">// compiles Less to CSS</span>\n            options<span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span>\n                modifyVars<span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span>\n                    <span class=\"token string\">'primary-color'</span><span class=\"token operator\">:</span> <span class=\"token string\">'#1DA57A'</span><span class=\"token punctuation\">,</span>\n                    <span class=\"token string\">'link-color'</span><span class=\"token operator\">:</span> <span class=\"token string\">'#1DA57A'</span><span class=\"token punctuation\">,</span>\n                    <span class=\"token string\">'border-radius-base'</span><span class=\"token operator\">:</span> <span class=\"token string\">'2px'</span><span class=\"token punctuation\">,</span>\n                    <span class=\"token comment\">// or</span>\n                    <span class=\"token string\">'hack'</span><span class=\"token operator\">:</span> <span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">true; @import \"your-less-file-path.less\";</span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">,</span> <span class=\"token comment\">// Override with less file</span>\n                <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span>\n                javascriptEnabled<span class=\"token operator\">:</span> <span class=\"token boolean\">true</span><span class=\"token punctuation\">,</span>\n            <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span>\n        <span class=\"token punctuation\">}</span><span class=\"token punctuation\">]</span><span class=\"token punctuation\">,</span>\n        <span class=\"token comment\">// ...other rules</span>\n    <span class=\"token punctuation\">}</span><span class=\"token punctuation\">]</span><span class=\"token punctuation\">,</span>\n    <span class=\"token comment\">// ...other config</span>\n<span class=\"token punctuation\">}</span></code></pre> <p>注意 less-loader 的处理范围不要过滤掉 node_modules 下的 santd 包</p> <h3 id=\"%E9%85%8D%E7%BD%AE-less-%E5%8F%98%E9%87%8F%E6%96%87%E4%BB%B6\"><a class=\"header-anchor\" href=\"#%E9%85%8D%E7%BD%AE-less-%E5%8F%98%E9%87%8F%E6%96%87%E4%BB%B6\">#</a> 配置 less 变量文件</h3> <p>另外一种方式是建立一个单独的 less 变量文件，引入这个文件覆盖 santd.less 里的变量。</p> <pre class=\"language-javascript\"><code class=\"language-javascript\">@<span class=\"token keyword\">import</span> <span class=\"token string\">'~santd/dist/santd.less'</span><span class=\"token punctuation\">;</span> <span class=\"token comment\">// 引入官方提供的 less 样式入口文件</span>\n@<span class=\"token keyword\">import</span> <span class=\"token string\">'your-theme-file.less'</span><span class=\"token punctuation\">;</span> <span class=\"token comment\">// 用于覆盖上面定义的变量</span></code></pre> <p>注意，这种方式已经载入了所有组件的样式，不需要也无法和按需加载插件 babel-plugin-import 的 style 属性一起使用。</p> </div></div> ";
-// Exports
-module.exports = code;
-
-/***/ }),
-
-/***/ 213:
+/***/ 121:
 /***/ (function(module, exports, __webpack_require__) {
 
 
         var normalize = __webpack_require__(2);
         var injectStyles = [];
 
-        var template = __webpack_require__(158);
+        var template = __webpack_require__(87);
         
-        var script = __webpack_require__(47).default;
-        module.exports = __webpack_require__(47);
+        var script = __webpack_require__(18).default;
+        module.exports = __webpack_require__(18);
     
         module.exports.default = normalize(script, template, injectStyles);
         /* san-hmr component */
@@ -184,51 +180,17 @@ module.exports = code;
 
 /***/ }),
 
-/***/ 47:
+/***/ 18:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(global) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ContentView; });
-/* harmony import */ var san_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+/* harmony import */ var _Volumes_Source_san_santd_node_modules_san_docit_node_modules_san_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-
-
-var ContentView = /*#__PURE__*/function (_SanComponent) {
-  _inherits(ContentView, _SanComponent);
-
-  var _super = _createSuper(ContentView);
-
-  function ContentView() {
-    _classCallCheck(this, ContentView);
-
-    return _super.apply(this, arguments);
-  }
-
-  _createClass(ContentView, [{
-    key: "inited",
-    value: function inited() {
+class ContentView extends _Volumes_Source_san_santd_node_modules_san_docit_node_modules_san_component__WEBPACK_IMPORTED_MODULE_0__[/* SanComponent */ "a"] {
+  inited() {
+    if (global.hub && global.hub.fire) {
       global.hub.fire('changed', {
         "level": 0,
         "children": [{
@@ -251,15 +213,21 @@ var ContentView = /*#__PURE__*/function (_SanComponent) {
         }]
       });
     }
-  }]);
+  }
 
-  return ContentView;
-}(san_component__WEBPACK_IMPORTED_MODULE_0__[/* SanComponent */ "a"]);
+}
 /* san-hmr disable */
-
-
-
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(3)))
+
+/***/ }),
+
+/***/ 87:
+/***/ (function(module, exports) {
+
+// Module
+var code = " <div class=\"content\"><div class=\"markdown\"><h1 id=\"%E5%AE%9A%E5%88%B6%E4%B8%BB%E9%A2%98\"><a class=\"header-anchor\" href=\"#%E5%AE%9A%E5%88%B6%E4%B8%BB%E9%A2%98\">#</a> 定制主题</h1> <p>Santd 的组件结构及样式和 Antd React 完全一致，你可以参考 Antd React 的定制方式进行配置。</p> <p>Ant Design 设计规范和技术上支持灵活的样式定制，以满足业务和品牌上多样化的视觉需求，包括但不限于全局样式（主色、圆角、边框）和指定组件的视觉定制。</p> <p><img src=\"https://zos.alipayobjects.com/rmsportal/zTFoszBtDODhXfLAazfSpYbSLSEeytoG.png\" alt=\"theme\"/></p> <h2 id=\"ant-design-san-%E7%9A%84%E6%A0%B7%E5%BC%8F%E5%8F%98%E9%87%8F\"><a class=\"header-anchor\" href=\"#ant-design-san-%E7%9A%84%E6%A0%B7%E5%BC%8F%E5%8F%98%E9%87%8F\">#</a> Ant Design San 的样式变量</h2> <p>antd 的样式使用了 <a href=\"http://lesscss.org/\">Less</a> 作为开发语言，并定义了一系列全局/组件的样式变量，你可以根据需求进行相应调整。</p> <p>以下是一些最常用的通用变量，所有样式变量可以在 <a href=\"https://github.com/ecomfe/santd/blob/master/src/core/styles/themes/default.less\">这里</a> 找到。</p> <pre class=\"language-javascript\"><code class=\"language-javascript\">@primary<span class=\"token operator\">-</span>color<span class=\"token operator\">:</span> #<span class=\"token number\">1890</span>ff<span class=\"token punctuation\">;</span> <span class=\"token comment\">// 全局主色</span>\n@link<span class=\"token operator\">-</span>color<span class=\"token operator\">:</span> #<span class=\"token number\">1890</span>ff<span class=\"token punctuation\">;</span> <span class=\"token comment\">// 链接色</span>\n@success<span class=\"token operator\">-</span>color<span class=\"token operator\">:</span> #<span class=\"token number\">52</span>c41a<span class=\"token punctuation\">;</span> <span class=\"token comment\">// 成功色</span>\n@warning<span class=\"token operator\">-</span>color<span class=\"token operator\">:</span> #faad14<span class=\"token punctuation\">;</span> <span class=\"token comment\">// 警告色</span>\n@error<span class=\"token operator\">-</span>color<span class=\"token operator\">:</span> #f5222d<span class=\"token punctuation\">;</span> <span class=\"token comment\">// 错误色</span>\n@font<span class=\"token operator\">-</span>size<span class=\"token operator\">-</span>base<span class=\"token operator\">:</span> <span class=\"token number\">14</span>px<span class=\"token punctuation\">;</span> <span class=\"token comment\">// 主字号</span>\n@heading<span class=\"token operator\">-</span>color<span class=\"token operator\">:</span> <span class=\"token function\">rgba</span><span class=\"token punctuation\">(</span><span class=\"token number\">0</span><span class=\"token punctuation\">,</span> <span class=\"token number\">0</span><span class=\"token punctuation\">,</span> <span class=\"token number\">0</span><span class=\"token punctuation\">,</span> <span class=\"token number\">0.85</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">;</span> <span class=\"token comment\">// 标题色</span>\n@text<span class=\"token operator\">-</span>color<span class=\"token operator\">:</span> <span class=\"token function\">rgba</span><span class=\"token punctuation\">(</span><span class=\"token number\">0</span><span class=\"token punctuation\">,</span> <span class=\"token number\">0</span><span class=\"token punctuation\">,</span> <span class=\"token number\">0</span><span class=\"token punctuation\">,</span> <span class=\"token number\">0.65</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">;</span> <span class=\"token comment\">// 主文本色</span>\n@text<span class=\"token operator\">-</span>color<span class=\"token operator\">-</span>secondary <span class=\"token operator\">:</span> <span class=\"token function\">rgba</span><span class=\"token punctuation\">(</span><span class=\"token number\">0</span><span class=\"token punctuation\">,</span> <span class=\"token number\">0</span><span class=\"token punctuation\">,</span> <span class=\"token number\">0</span><span class=\"token punctuation\">,</span> <span class=\"token number\">.45</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">;</span> <span class=\"token comment\">// 次文本色</span>\n@disabled<span class=\"token operator\">-</span>color <span class=\"token operator\">:</span> <span class=\"token function\">rgba</span><span class=\"token punctuation\">(</span><span class=\"token number\">0</span><span class=\"token punctuation\">,</span> <span class=\"token number\">0</span><span class=\"token punctuation\">,</span> <span class=\"token number\">0</span><span class=\"token punctuation\">,</span> <span class=\"token number\">.25</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">;</span> <span class=\"token comment\">// 失效色</span>\n@border<span class=\"token operator\">-</span>radius<span class=\"token operator\">-</span>base<span class=\"token operator\">:</span> <span class=\"token number\">4</span>px<span class=\"token punctuation\">;</span> <span class=\"token comment\">// 组件/浮层圆角</span>\n@border<span class=\"token operator\">-</span>color<span class=\"token operator\">-</span>base<span class=\"token operator\">:</span> #d9d9d9<span class=\"token punctuation\">;</span> <span class=\"token comment\">// 边框色</span>\n@box<span class=\"token operator\">-</span>shadow<span class=\"token operator\">-</span>base<span class=\"token operator\">:</span> <span class=\"token number\">0</span> <span class=\"token number\">2</span>px <span class=\"token number\">8</span>px <span class=\"token function\">rgba</span><span class=\"token punctuation\">(</span><span class=\"token number\">0</span><span class=\"token punctuation\">,</span> <span class=\"token number\">0</span><span class=\"token punctuation\">,</span> <span class=\"token number\">0</span><span class=\"token punctuation\">,</span> <span class=\"token number\">0.15</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">;</span> <span class=\"token comment\">// 浮层阴影</span></code></pre> <p>如果以上变量不能满足你的定制需求，可以给我们提 issue。</p> <h2 id=\"%E5%AE%9A%E5%88%B6%E6%96%B9%E5%BC%8F\"><a class=\"header-anchor\" href=\"#%E5%AE%9A%E5%88%B6%E6%96%B9%E5%BC%8F\">#</a> 定制方式</h2> <p>原理上是使用 less 提供的 <a href=\"http://lesscss.org/usage/#using-less-in-the-browser-modify-variables\">modifyVars</a> 的方式进行覆盖变量。下面将针对不同的场景提供一些常用的定制方式。</p> <h3 id=\"%E5%9C%A8-webpack-%E4%B8%AD%E5%AE%9A%E5%88%B6%E4%B8%BB%E9%A2%98\"><a class=\"header-anchor\" href=\"#%E5%9C%A8-webpack-%E4%B8%AD%E5%AE%9A%E5%88%B6%E4%B8%BB%E9%A2%98\">#</a> 在 webpack 中定制主题</h3> <p>我们以 webpack@4 为例进行说明，以下是一个 webpack.config.js 的典型例子，对 <a href=\"https://github.com/webpack-contrib/less-loader\">less-loader</a> 的 options 属性进行相应配置。</p> <pre class=\"language-javascript\"><code class=\"language-javascript\"><span class=\"token comment\">// webpack.config.js</span>\nmodule<span class=\"token punctuation\">.</span>exports <span class=\"token operator\">=</span> <span class=\"token punctuation\">{</span>\n    rules<span class=\"token operator\">:</span> <span class=\"token punctuation\">[</span><span class=\"token punctuation\">{</span>\n        test<span class=\"token operator\">:</span> <span class=\"token regex\"><span class=\"token regex-delimiter\">/</span><span class=\"token regex-source language-regex\">\\.less$</span><span class=\"token regex-delimiter\">/</span></span><span class=\"token punctuation\">,</span>\n        use<span class=\"token operator\">:</span> <span class=\"token punctuation\">[</span><span class=\"token punctuation\">{</span>\n            loader<span class=\"token operator\">:</span> <span class=\"token string\">'style-loader'</span><span class=\"token punctuation\">,</span>\n        <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span> <span class=\"token punctuation\">{</span>\n            loader<span class=\"token operator\">:</span> <span class=\"token string\">'css-loader'</span><span class=\"token punctuation\">,</span> <span class=\"token comment\">// translates CSS into CommonJS</span>\n        <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span> <span class=\"token punctuation\">{</span>\n            loader<span class=\"token operator\">:</span> <span class=\"token string\">'less-loader'</span><span class=\"token punctuation\">,</span> <span class=\"token comment\">// compiles Less to CSS</span>\n            options<span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span>\n                modifyVars<span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span>\n                    <span class=\"token string\">'primary-color'</span><span class=\"token operator\">:</span> <span class=\"token string\">'#1DA57A'</span><span class=\"token punctuation\">,</span>\n                    <span class=\"token string\">'link-color'</span><span class=\"token operator\">:</span> <span class=\"token string\">'#1DA57A'</span><span class=\"token punctuation\">,</span>\n                    <span class=\"token string\">'border-radius-base'</span><span class=\"token operator\">:</span> <span class=\"token string\">'2px'</span><span class=\"token punctuation\">,</span>\n                    <span class=\"token comment\">// or</span>\n                    <span class=\"token string\">'hack'</span><span class=\"token operator\">:</span> <span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">true; @import \"your-less-file-path.less\";</span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">,</span> <span class=\"token comment\">// Override with less file</span>\n                <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span>\n                javascriptEnabled<span class=\"token operator\">:</span> <span class=\"token boolean\">true</span><span class=\"token punctuation\">,</span>\n            <span class=\"token punctuation\">}</span><span class=\"token punctuation\">,</span>\n        <span class=\"token punctuation\">}</span><span class=\"token punctuation\">]</span><span class=\"token punctuation\">,</span>\n        <span class=\"token comment\">// ...other rules</span>\n    <span class=\"token punctuation\">}</span><span class=\"token punctuation\">]</span><span class=\"token punctuation\">,</span>\n    <span class=\"token comment\">// ...other config</span>\n<span class=\"token punctuation\">}</span></code></pre> <p>注意 less-loader 的处理范围不要过滤掉 node_modules 下的 santd 包</p> <h3 id=\"%E9%85%8D%E7%BD%AE-less-%E5%8F%98%E9%87%8F%E6%96%87%E4%BB%B6\"><a class=\"header-anchor\" href=\"#%E9%85%8D%E7%BD%AE-less-%E5%8F%98%E9%87%8F%E6%96%87%E4%BB%B6\">#</a> 配置 less 变量文件</h3> <p>另外一种方式是建立一个单独的 less 变量文件，引入这个文件覆盖 santd.less 里的变量。</p> <pre class=\"language-javascript\"><code class=\"language-javascript\">@<span class=\"token keyword\">import</span> <span class=\"token string\">'~santd/dist/santd.less'</span><span class=\"token punctuation\">;</span> <span class=\"token comment\">// 引入官方提供的 less 样式入口文件</span>\n@<span class=\"token keyword\">import</span> <span class=\"token string\">'your-theme-file.less'</span><span class=\"token punctuation\">;</span> <span class=\"token comment\">// 用于覆盖上面定义的变量</span></code></pre> <p>注意，这种方式已经载入了所有组件的样式，不需要也无法和按需加载插件 babel-plugin-import 的 style 属性一起使用。</p> </div></div> ";
+// Exports
+module.exports = code;
 
 /***/ })
 

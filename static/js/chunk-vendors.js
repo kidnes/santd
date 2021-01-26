@@ -1,6 +1,5 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[0],{
-
-/***/ 0:
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[0],[
+/* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(setImmediate) {/**
@@ -10384,11 +10383,10 @@ function createComponentLoader(options) {
     // #[end]
 })(this);
 //@ sourceMappingURL=san.dev.js.map
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(218).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(128).setImmediate))
 
 /***/ }),
-
-/***/ 1:
+/* 1 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10404,82 +10402,84 @@ function createComponentLoader(options) {
  * @author jinzhan
 */
 
-
-
 const globalComponents = {};
-
 class SanComponent extends san__WEBPACK_IMPORTED_MODULE_0__["Component"] {
-    constructor(options) {
-        super(options);
-        this.defaultComponents = globalComponents;
-    }
+  constructor(options) {
+    super(options);
+    this.defaultComponents = globalComponents;
+  }
 
-    get components() {
-        const components = this.customComponents || {};
-        return Object.assign(components, this.defaultComponents);
-    }
+  get components() {
+    const components = this.customComponents || {};
+    return Object.assign(components, this.defaultComponents);
+  }
 
-    set components(comp) {
-        this.customComponents = comp;
-    }
-};
+  set components(comp) {
+    this.customComponents = comp;
+  }
 
+}
+;
 const mixin = (Component, mixins) => {
-    const keys = Object.keys(mixins);
-    for (const key of keys) {
-        const original = Component.prototype[key];
-        const mixin = mixins[key];
-        switch (key) {
-            // 处理initData数据
-            case 'initData':
-                Component.prototype[key] = function () {
-                    const originalData = original ? original.call(this) : {};
-                    // initData mixin可以是对象类型，也可以是函数
-                    const mixinData = typeof mixin === 'function' ? mixin.call(this) : mixin;
-                    return Object.assign(mixinData, originalData);
-                };
-                break;
+  const keys = Object.keys(mixins);
 
-            // 处理生命周期钩子
-            // @see san生命周期: https://baidu.github.io/san/tutorial/component/#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F
-            case 'compiled':
-            case 'inited':
-            case 'created':
-            case 'attached':
-            case 'detached':
-            case 'disposed':
-            case 'updated':
-                Component.prototype[key] = function () {
-                    mixin.call(this);
-                    original && original.call(this);
-                };
-                break;
+  for (const key of keys) {
+    const original = Component.prototype[key];
+    const mixin = mixins[key];
 
-            // 处理组件成员对象
-            case 'components':
-                // 忽略：static属性不能被mixin
-                break;
-            case 'filters':
-            case 'computed':
-            case 'messages':
-                Component.prototype[key] = Object.assign(mixin, original);
-                break;
+    switch (key) {
+      // 处理initData数据
+      case 'initData':
+        Component.prototype[key] = function () {
+          const originalData = original ? original.call(this) : {}; // initData mixin可以是对象类型，也可以是函数
 
-            // 无法被继承的属性和自定义方法，和default走同样的逻辑
-            // case 'template':
-            // case 'trimWhitespace':
-            // case 'delimiters':
-            //    Component.prototype[key] = original || mixin;
-            // break;
+          const mixinData = typeof mixin === 'function' ? mixin.call(this) : mixin;
+          return Object.assign(mixinData, originalData);
+        };
 
-            // 自定义方法
-            default:
-                Component.prototype[key] = original || mixin;
-        }
+        break;
+      // 处理生命周期钩子
+      // @see san生命周期: https://baidu.github.io/san/tutorial/component/#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F
+
+      case 'compiled':
+      case 'inited':
+      case 'created':
+      case 'attached':
+      case 'detached':
+      case 'disposed':
+      case 'updated':
+        Component.prototype[key] = function () {
+          mixin.call(this);
+          original && original.call(this);
+        };
+
+        break;
+      // 处理组件成员对象
+
+      case 'components':
+        // 忽略：static属性不能被mixin
+        break;
+
+      case 'filters':
+      case 'computed':
+      case 'messages':
+        Component.prototype[key] = Object.assign(mixin, original);
+        break;
+      // 无法被继承的属性和自定义方法，和default走同样的逻辑
+      // case 'template':
+      // case 'trimWhitespace':
+      // case 'delimiters':
+      //    Component.prototype[key] = original || mixin;
+      // break;
+      // 自定义方法
+
+      default:
+        Component.prototype[key] = original || mixin;
     }
-    return Component;
-};
+  }
 
+  return Component;
+};
 /**
  * 注入全局组件的方面
  * 
@@ -10489,24 +10489,1038 @@ const mixin = (Component, mixins) => {
  *  's-button': Button
  * }
 */
-const registerComponents = components => {
-    Object.assign(globalComponents, components);
-};
 
+const registerComponents = components => {
+  Object.assign(globalComponents, components);
+};
 /**
  * 往组件中添加mixin方法
  * 
  * @param {Object} mixins 要添加的mixin对象
  * @param {Object} Component 要mixin的组件，默认对SanComponent进行全局添加
 */
+
 const registerMixins = (mixins, Component = SanComponent) => {
-    mixin(Component, mixins);
+  mixin(Component, mixins);
 };
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Copyright (c) Baidu Inc. All rights reserved.
+ *
+ * This source code is licensed under the MIT license.
+ * See LICENSE file in the project root for license information.
+ *
+ * @file normalize.js
+ * @author clark-t
+ */
+
+/* eslint-disable prefer-rest-params */
+
+var defineComponent = __webpack_require__(0).defineComponent;
+
+/**
+ * 处理 .san 组件 script 与 template 等部分的组合方法
+ *
+ * @param {Object|Function} script 组件 script 部分
+ * @param {string} template 组件 template 部分的文本
+ * @param {string} injectStyles 组件需要注入的 style 列表
+ * @return {Class} 组件类
+ */
+module.exports = function (script, template, injectStyles) {
+    var dfns = componentDefinitions(script);
+    for (var i = 0; i < dfns.length; i++) {
+        if (template) {
+            if (typeof template === 'string') {
+                dfns[i].template = template;
+            }
+            else if (template instanceof Array) {
+                dfns[i].aPack = template;
+            }
+            else {
+                dfns[i].aNode = template;
+            }
+        }
+        if (injectStyles.length) {
+            injectStylesIntoInitData(dfns[i], injectStyles);
+        }
+    }
+
+    return typeof script === 'object' ? defineComponent(script) : script;
+};
+
+function injectStylesIntoInitData(proto, injectStyles) {
+    var style = {};
+    for (var i = 0; i < injectStyles.length; i++) {
+        objectAssign(style, injectStyles[i]);
+    }
+    var original = proto.initData;
+    proto.initData = original
+        ? function () {
+            return objectAssign({}, original.call(this), {$style: style});
+        }
+        : function () {
+            return style;
+        };
+}
+
+function componentDefinitions(cmpt) {
+    // 当 script 为 Function 时，等价于 class A { static template = 'xxx' }
+    // 可查看 static property 的 babel 编译产物
+    var dfns = [cmpt];
+    // 对于联合 san-store 的情况，需要同时将 template, inited 等挂到原型链上
+    if (typeof cmpt === 'function') {
+        dfns.push(cmpt.prototype);
+        if (cmpt.prototype.constructor) {
+            dfns.push(cmpt.prototype.constructor.prototype);
+        }
+    }
+    return dfns;
+}
+
+// 参考：https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#Polyfill
+function objectAssign(target) {
+    'use strict';
+    if (target === null || target === undefined) {
+        throw new TypeError('Cannot convert undefined or null to object');
+    }
+
+    var to = Object(target);
+
+    for (var index = 1; index < arguments.length; index++) {
+        var nextSource = arguments[index];
+
+        if (nextSource !== null && nextSource !== undefined) {
+            for (var nextKey in nextSource) {
+                if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
+                    to[nextKey] = nextSource[nextKey];
+                }
+            }
+        }
+    }
+    return to;
+}
 
 
 /***/ }),
+/* 3 */
+/***/ (function(module, exports) {
 
-/***/ 14:
+var g; // This works in non-strict mode
+
+g = function () {
+  return this;
+}();
+
+try {
+  // This works if eval is allowed (see CSP)
+  g = g || new Function("return this")();
+} catch (e) {
+  // This works if the window reference is available
+  if (typeof window === "object") g = window;
+} // g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+
+module.exports = g;
+
+/***/ }),
+/* 4 */,
+/* 5 */,
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * san-router
+ * Copyright 2017 Baidu Inc. All rights reserved.
+ */
+(function (root) {
+  /**
+   * 元素选择器
+   *
+   * @param {string|Element} selector 选择器
+   * @returns {Element}
+   */
+  function elementSelector(selector) {
+    switch (typeof selector) {
+      case 'object':
+        return selector;
+
+      case 'string':
+        if (document.querySelector) {
+          return document.querySelector(selector);
+        }
+
+        return document.getElementById(selector.replace(/#/i, ''));
+    }
+  }
+  /**
+   * 解析URL，返回包含path、query、queryString的对象
+   *
+   * @param {string} url 要解析的url
+   * @return {Object}
+   */
+
+
+  function parseURL(url) {
+    var result = {
+      hash: '',
+      queryString: '',
+      params: {},
+      query: {},
+      path: url
+    }; // parse hash
+
+    var hashStart = result.path.indexOf('#');
+
+    if (hashStart >= 0) {
+      result.hash = result.path.slice(hashStart + 1);
+      result.path = result.path.slice(0, hashStart);
+    } // parse query
+
+
+    var query = result.query;
+    var queryStart = result.path.indexOf('?');
+
+    if (queryStart >= 0) {
+      result.queryString = result.path.slice(queryStart + 1);
+      result.path = result.path.slice(0, queryStart);
+      var querySegs = result.queryString.split('&');
+
+      for (var i = 0; i < querySegs.length; i++) {
+        var querySeg = querySegs[i]; // 考虑到有可能因为未处理转义问题，
+        // 导致value中存在**=**字符，因此不使用`split`函数
+
+        var equalIndex = querySeg.indexOf('=');
+        var value = '';
+
+        if (equalIndex > 0) {
+          value = querySeg.slice(equalIndex + 1);
+          querySeg = querySeg.slice(0, equalIndex);
+        }
+
+        var key = decodeURIComponent(querySeg);
+        value = decodeURIComponent(value); // 已经存在这个参数，且新的值不为空时，把原来的值变成数组
+
+        if (query.hasOwnProperty(key)) {
+          /* eslint-disable */
+          query[key] = [].concat(query[key], value);
+          /* eslint-disable */
+        } else {
+          query[key] = value;
+        }
+      }
+    }
+
+    return result;
+  }
+  /**
+   * 将 URL 中相对路径部分展开
+   *
+   * @param {string} source 要展开的url
+   * @param {string} base 当前所属环境的url
+   * @return {string}
+   */
+
+
+  function resolveURL(source, base) {
+    var sourceLoc = parseURL(source);
+    var baseLoc = parseURL(base);
+    var sourcePath = sourceLoc.path;
+
+    if (sourcePath.indexOf('/') === 0) {
+      return source;
+    }
+
+    var sourceSegs = sourcePath.split('/');
+    var baseSegs = baseLoc.path.split('/');
+    baseSegs.pop();
+
+    for (var i = 0; i < sourceSegs.length; i++) {
+      var seg = sourceSegs[i];
+
+      switch (seg) {
+        case '..':
+          baseSegs.pop();
+          break;
+
+        case '.':
+          break;
+
+        default:
+          baseSegs.push(seg);
+      }
+    }
+
+    if (baseSegs[0] !== '') {
+      baseSegs.unshift('');
+    }
+
+    return baseSegs.join('/') + (sourceLoc.queryString ? '?' + sourceLoc.queryString : '');
+  }
+
+  var isBrowser = typeof window !== 'undefined';
+
+  function EventTarget() {}
+  /**
+   * 注册一个事件处理函数
+   *
+   * @param {string} type 事件的类型
+   * @param {Function | boolean} fn 事件的处理函数
+   */
+
+
+  EventTarget.prototype.on = function (type, fn) {
+    if (typeof fn !== 'function') {
+      return;
+    }
+
+    if (!this._eventListeners) {
+      this._eventListeners = {};
+    }
+
+    if (!this._eventListeners[type]) {
+      this._eventListeners[type] = [];
+    }
+
+    this._eventListeners[type].push(fn);
+  };
+  /**
+   * 注销一个事件处理函数
+   *
+   * @param {string} type 事件的类型，如果值为`*`仅会注销通过`*`为类型注册的事件，并不会将所有事件注销
+   * @param {Function} [fn] 事件的处理函数，无此参数则注销`type`指定类型的所有事件处理函数
+   */
+
+
+  EventTarget.prototype.un = function (type, fn) {
+    if (!this._eventListeners || !this._eventListeners[type]) {
+      return;
+    }
+
+    if (!fn) {
+      this._eventListeners[type] = [];
+    } else {
+      var listeners = this._eventListeners[type];
+      var len = listeners.length;
+
+      while (len--) {
+        if (listeners[len] === fn) {
+          listeners.splice(len, 1);
+        }
+      }
+    }
+  };
+  /**
+   * 触发指定类型的事件
+   *
+   * @param {string} type 事件类型
+   * @param {*} [args] 事件对象
+   */
+
+
+  EventTarget.prototype.fire = function (type, args) {
+    if (!type) {
+      throw new Error('No event type specified');
+    }
+
+    var listeners = this._eventListeners && this._eventListeners[type];
+
+    if (listeners) {
+      for (var i = 0; i < listeners.length; i++) {
+        listeners[i](args);
+      }
+    }
+  };
+  /**
+   * 获取hash当前URL
+   *
+   * @return {string}
+   */
+
+
+  function getHashLocation() {
+    if (!isBrowser) {
+      return '';
+    } // Firefox下`location.hash`存在自动解码的情况，
+    // 比如hash的值是**abc%3def**，
+    // 在Firefox下获取会成为**abc=def**
+    // 为了避免这一情况，需要从`location.href`中分解
+
+
+    var index = location.href.indexOf('#');
+    var url = index < 0 ? '/' : location.href.slice(index + 1) || '/';
+    return url;
+  }
+  /**
+   * hash 模式地址监听器
+   *
+   * @class
+   */
+
+
+  function HashLocator() {
+    this.current = getHashLocation();
+    this.referrer = '';
+    var me = this;
+
+    this.hashChangeHandler = function () {
+      me.redirect(getHashLocation());
+    };
+  }
+
+  HashLocator.prototype = new EventTarget();
+  HashLocator.prototype.constructor = HashLocator;
+  /**
+   * 开始监听 url 变化
+   */
+
+  HashLocator.prototype.start = function () {
+    if (window.addEventListener) {
+      window.addEventListener('hashchange', this.hashChangeHandler, false);
+    }
+
+    if (window.attachEvent) {
+      window.attachEvent('onhashchange', this.hashChangeHandler);
+    }
+  };
+  /**
+   * 停止监听
+   */
+
+
+  HashLocator.prototype.stop = function () {
+    if (window.removeEventListener) {
+      window.removeEventListener('hashchange', this.hashChangeHandler, false);
+    }
+
+    if (window.detachEvent) {
+      window.detachEvent('onhashchange', this.hashChangeHandler);
+    }
+  };
+  /**
+   * 重定向
+   *
+   * @param {string} url 重定向的地址
+   * @param {Object?} options 重定向的行为配置
+   * @param {boolean?} options.force 是否强制刷新
+   */
+
+
+  HashLocator.prototype.redirect = function (url, options) {
+    options = options || {};
+    url = resolveURL(url, this.current);
+    var referrer = this.current;
+    var isChanged = url !== referrer;
+
+    if (isChanged) {
+      this.referrer = referrer;
+      this.current = url;
+      location.hash = url;
+    } else {
+      referrer = this.referrer;
+    }
+
+    if ((isChanged || options.force) && !options.silent) {
+      this.fire('redirect', {
+        url: url,
+        referrer: referrer
+      });
+    }
+  };
+  /**
+   * 刷新当前 url
+   */
+
+
+  HashLocator.prototype.reload = function () {
+    this.redirect(this.current, {
+      force: true
+    });
+  };
+  /**
+   * 获取当前URL
+   *
+   * @return {string}
+   */
+
+
+  function getLocation() {
+    return isBrowser ? location.pathname + location.search : '';
+  }
+  /**
+   * html5 模式地址监听器
+   *
+   * @class
+   */
+
+
+  function HTML5Locator() {
+    this.current = getLocation();
+    this.referrer = '';
+    var me = this;
+
+    this.popstateHandler = function () {
+      me.referrer = me.current;
+      me.current = getLocation();
+      me.fire('redirect', {
+        url: me.current,
+        referrer: me.referrer
+      });
+    };
+  }
+
+  HTML5Locator.prototype = new EventTarget();
+  HTML5Locator.prototype.constructor = HashLocator;
+  /**
+   * 开始监听 url 变化
+   */
+
+  HTML5Locator.prototype.start = function () {
+    window.addEventListener('popstate', this.popstateHandler);
+  };
+  /**
+   * 停止监听
+   */
+
+
+  HTML5Locator.prototype.stop = function () {
+    window.removeEventListener('popstate', this.popstateHandler);
+  };
+  /**
+   * 重定向
+   *
+   * @param {string} url 重定向的地址
+   * @param {Object?} options 重定向的行为配置
+   * @param {boolean?} options.force 是否强制刷新
+   */
+
+
+  HTML5Locator.prototype.redirect = function (url, options) {
+    options = options || {};
+    url = resolveURL(url, this.current);
+    var referrer = this.current;
+    var isChanged = url !== referrer;
+
+    if (isChanged) {
+      this.referrer = referrer;
+      this.current = url;
+      history.pushState({}, '', url);
+    }
+
+    if ((isChanged || options.force) && !options.silent) {
+      this.fire('redirect', {
+        url: url,
+        referrer: referrer
+      });
+    }
+  };
+  /**
+   * 刷新当前 url
+   */
+
+
+  HTML5Locator.prototype.reload = function () {
+    this.fire('redirect', {
+      url: this.current,
+      referrer: this.referrer
+    });
+  }; // HTML5Locator.isSupport = 'pushState' in window.history;
+
+
+  var routeID = 0x5942b;
+
+  function guid() {
+    return (++routeID).toString();
+  }
+
+  function isComponent(C) {
+    return C.prototype && (C.prototype.nodeType === 5 || C.prototype._type === 'san-cmpt');
+  }
+  /**
+   * 获取 router 的 locator redirect 事件监听函数
+   *
+   * @return {Function}
+   */
+
+
+  function getLocatorRedirectHandler(router) {
+    return function (e) {
+      var url = parseURL(e.url);
+      var routeItem;
+
+      for (var i = 0; i < router.routes.length; i++) {
+        var item = router.routes[i];
+        var match = item.rule.exec(url.path);
+
+        if (match) {
+          routeItem = item; // fill params
+
+          var keys = item.keys || [];
+
+          for (var j = 1; j < match.length; j++) {
+            var key = keys[j] || j;
+            var value = match[j];
+            url.query[key] = value;
+            url.params[key] = value;
+          } // fill referrer
+
+
+          url.referrer = e.referrer;
+          url.config = item.config;
+          break;
+        }
+      }
+
+      var i = 0;
+      var state = 1;
+      /**
+       * listener 事件对象
+       *
+       * @type {Object}
+       */
+
+      var listenerEvent = {
+        url: e.url,
+        hash: url.hash,
+        queryString: url.queryString,
+        query: url.query,
+        path: url.path,
+        referrer: url.referrer,
+        config: url.config,
+        resume: next,
+        suspend: function () {
+          state = 0;
+        },
+        stop: function () {
+          state = -1;
+        }
+      };
+      /**
+       * 尝试运行下一个listener
+       *
+       * @inner
+       */
+
+      function doNext() {
+        if (state > 0) {
+          if (i < router.listeners.length) {
+            router.listeners[i].call(router, listenerEvent, url.config);
+
+            if (state > 0) {
+              next();
+            }
+          } else {
+            routeAction();
+          }
+        }
+      }
+      /**
+       * 运行下一个listener
+       *
+       * @inner
+       */
+
+
+      function next() {
+        state = 1;
+        i++;
+        doNext();
+      }
+      /**
+       * 运行路由行为
+       *
+       * @inner
+       */
+
+
+      function routeAction() {
+        if (routeItem) {
+          router.doRoute(routeItem, url);
+        } else {
+          var len = router.routeAlives.length;
+
+          while (len--) {
+            router.routeAlives[len].component.dispose();
+            router.routeAlives.splice(len, 1);
+          }
+        }
+      }
+
+      ;
+      doNext();
+    };
+  }
+  /**
+   * 路由器类
+   *
+   * @class
+   * @param {Object?} options 初始化参数
+   * @param {string?} options.mode 路由模式，hash | html5
+   */
+
+
+  function Router(options) {
+    options = options || {};
+    var mode = options.mode || 'hash';
+    this.routes = [];
+    this.routeAlives = [];
+    this.listeners = [];
+    this.afterListeners = [];
+    this.locatorRedirectHandler = getLocatorRedirectHandler(this);
+    this.setMode(mode);
+  }
+  /**
+   * 添加路由监听器
+   *
+   * @param {function(e, config)} listener 监听器
+   */
+
+
+  Router.prototype.listen = function (listener) {
+    this.listeners.push(listener);
+  };
+
+  Router.prototype.afterEach = function (listener) {
+    this.afterListeners.push(listener);
+  };
+  /**
+   * 移除路由监听器
+   *
+   * @param {Function} listener 监听器
+   */
+
+
+  Router.prototype.unlisten = function (listener) {
+    var len = this.listeners.length;
+
+    while (len--) {
+      if (this.listeners[len] === listener) {
+        this.listeners.splice(len, 1);
+      }
+    }
+
+    len = this.afterListeners.length;
+
+    while (len--) {
+      if (this.afterListeners[len] === listener) {
+        this.afterListeners.splice(len, 1);
+      }
+    }
+  };
+  /**
+   * 启动路由功能
+   *
+   * @return {Object} san-router 实例
+   */
+
+
+  Router.prototype.start = function () {
+    if (!this.isStarted) {
+      this.isStarted = true;
+      this.locator.on('redirect', this.locatorRedirectHandler);
+      this.locator.start();
+      this.locator.reload();
+    }
+
+    return this;
+  };
+  /**
+   * 停止路由功能
+   *
+   * @return {Object} san-router 实例
+   */
+
+
+  Router.prototype.stop = function () {
+    this.locator.un('redirect', this.locatorRedirectHandler);
+    this.locator.stop();
+    this.isStarted = false;
+    return this;
+  };
+  /**
+   * 设置路由模式
+   *
+   * @param {string} mode 路由模式，hash | html5
+   * @return {Object} san-router 实例
+   */
+
+
+  Router.prototype.setMode = function (mode) {
+    mode = mode.toLowerCase();
+
+    if (this.mode === mode) {
+      return;
+    }
+
+    this.mode = mode;
+    var restart = false;
+
+    if (this.isStarted) {
+      this.stop();
+      restart = true;
+    }
+
+    switch (mode) {
+      case 'hash':
+        this.locator = new HashLocator();
+        break;
+
+      case 'html5':
+        this.locator = new HTML5Locator();
+    }
+
+    if (restart) {
+      this.start();
+    }
+
+    return this;
+  };
+  /**
+   * 执行路由
+   *
+   * @private
+   * @param {Object} routeItem 路由项
+   * @param {Object} e 路由信息
+   */
+
+
+  Router.prototype.doRoute = function (routeItem, e) {
+    var isUpdateAlive = false;
+    var len = this.routeAlives.length;
+
+    while (len--) {
+      var routeAlive = this.routeAlives[len];
+
+      if (routeAlive.id === routeItem.id) {
+        routeAlive.component.data.set('route', e);
+
+        routeAlive.component._callHook('route');
+
+        isUpdateAlive = true;
+      } else {
+        routeAlive.component.dispose();
+        this.routeAlives.splice(len, 1);
+      }
+    }
+
+    if (isUpdateAlive) {
+      return;
+    }
+
+    if (routeItem.Component) {
+      if (isComponent(routeItem.Component)) {
+        this.attachCmpt(routeItem, e);
+      } else {
+        var me = this;
+        routeItem.Component().then(function (Cmpt) {
+          // eslint-disable-line
+          if (isComponent(Cmpt)) {
+            routeItem.Component = Cmpt;
+          } else if (Cmpt.__esModule && isComponent(Cmpt['default'])) {
+            routeItem.Component = Cmpt['default'];
+          }
+
+          me.attachCmpt(routeItem, e);
+        });
+      }
+    } else {
+      routeItem.handler.call(this, e);
+    }
+  };
+
+  Router.prototype.attachCmpt = function (routeItem, e) {
+    var component = new routeItem.Component();
+    component.data.set('route', e);
+
+    component._callHook('route');
+
+    var target = routeItem.target;
+    var targetEl = elementSelector(target);
+
+    if (!targetEl) {
+      throw new Error('[SAN-ROUTER ERROR] ' + 'Attach failed, target element "' + routeItem.target + '" is not found.');
+    }
+
+    component.attach(targetEl);
+    this.routeAlives.push({
+      component: component,
+      id: routeItem.id
+    });
+    this.afterListeners.forEach(listener => {
+      listener.call(main.router, routeItem);
+    });
+  };
+  /**
+   * 添加路由项
+   * 当规则匹配时，路由将优先将Component渲染到target中。如果没有包含Component，则执行handler函数
+   *
+   * @private
+   * @param {Object} config 路由项配置
+   * @param {string|RegExp} config.rule 路由规则
+   * @param {Function?} config.handler 路由函数
+   * @param {Function?} config.Component 路由组件
+   * @param {string} config.target 路由组件要渲染到的目标位置
+   * @return {Object} san-router 实例
+   */
+
+
+  Router.prototype.add = function (config) {
+    var rule = config.rule;
+    var keys = [''];
+
+    if (typeof rule === 'string') {
+      // 没用path-to-regexp，暂时不提供这么多功能支持
+      var regText = rule.replace(/\/:([a-z0-9_-]+)(?=\/|$)/ig, function (match, key) {
+        keys.push(key);
+        return '/([^/\\s]+)';
+      });
+      rule = new RegExp('^' + regText + '$', 'i');
+    }
+
+    if (!(rule instanceof RegExp)) {
+      throw new Error('[SAN-ROUTER ERROR] Rule must be string or RegExp!');
+    }
+
+    var id = guid();
+    this.routes.push({
+      id: id,
+      rule: rule,
+      handler: config.handler,
+      keys: keys,
+      target: config.target || '#main',
+      Component: config.Component,
+      config: config
+    });
+    return this;
+  };
+
+  var Link = __webpack_require__(0).defineComponent({
+    template: '<a href="{{hrefPrefix}}{{href}}" onclick="return false;" on-click="clicker($event)" ' + 'target="{{target}}" class="{{isActive ? activeClass : \'\'}}"><slot/></a>',
+    clicker: function (e) {
+      var href = this.data.get('href');
+
+      if (typeof href === 'string') {
+        main.router.locator.redirect(href.replace(/^#/, ''));
+      }
+
+      if (e.preventDefault) {
+        e.preventDefault();
+      } else {
+        e.returnValue = false;
+      }
+    },
+    inited: function () {
+      var me = this;
+
+      this.routeListener = function (e) {
+        me.data.set('isActive', e.url === me.data.get('href'));
+      };
+
+      this.routeListener({
+        url: main.router.locator.current
+      });
+      main.router.listen(this.routeListener);
+    },
+    disposed: function () {
+      main.router.unlisten(this.routeListener);
+      this.routeListener = null;
+    },
+    initData: function () {
+      return {
+        isActive: false,
+        hrefPrefix: main.router.mode === 'hash' ? '#' : ''
+      };
+    },
+    computed: {
+      href: function () {
+        var url = this.data.get('to') || '';
+        return resolveURL(url, main.router.locator.current);
+      }
+    }
+  });
+
+  var main = {
+    /**
+     * 路由链接的 San 组件
+     */
+    Link: Link,
+    router: null,
+    Router: Router,
+    HashLocator: HashLocator,
+    HTML5Locator: HTML5Locator,
+    resolveURL: resolveURL,
+    parseURL: parseURL,
+    version: '1.2.2'
+  }; // For AMD
+
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (main),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else {}
+})(this);
+
+/***/ }),
+/* 7 */,
+/* 8 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+const base = (() => {
+  const baseUrl = '/santd/';
+  const base = baseUrl.length > 1 ? baseUrl.slice(0, -1) : '';
+  return base;
+})();
+
+const treeWalk = (root, callback) => {
+  if (!root) {
+    return;
+  }
+
+  callback(root);
+
+  if (!root.children) {
+    return;
+  }
+
+  root.children.forEach(item => {
+    callback(item);
+
+    if (item.children) {
+      treeWalk(item, callback);
+    }
+  });
+};
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  base,
+  treeWalk
+});
+
+/***/ }),
+/* 9 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var san__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
+/* harmony import */ var san__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(san__WEBPACK_IMPORTED_MODULE_0__);
+/**
+ * @file Event Hub
+ */
+
+const hub = new san__WEBPACK_IMPORTED_MODULE_0__["Component"]({});
+global.hub = hub;
+/* harmony default export */ __webpack_exports__["a"] = (hub);
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(3)))
+
+/***/ }),
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/* NProgress, (c) 2013, 2014 Rico Sta. Cruz - http://ricostacruz.com/nprogress
@@ -10988,8 +12002,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/* NProgress, 
 
 
 /***/ }),
-
-/***/ 16:
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;// TinyColor v1.4.2
@@ -12189,871 +13202,24 @@ else {}
 
 
 /***/ }),
-
-/***/ 184:
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var MediaQueryDispatch = __webpack_require__(185);
-module.exports = new MediaQueryDispatch();
 
+        var normalize = __webpack_require__(2);
+        var injectStyles = [];
 
-/***/ }),
-
-/***/ 185:
-/***/ (function(module, exports, __webpack_require__) {
-
-var MediaQuery = __webpack_require__(186);
-var Util = __webpack_require__(72);
-var each = Util.each;
-var isFunction = Util.isFunction;
-var isArray = Util.isArray;
-
-/**
- * Allows for registration of query handlers.
- * Manages the query handler's state and is responsible for wiring up browser events
- *
- * @constructor
- */
-function MediaQueryDispatch () {
-    if(!window.matchMedia) {
-        throw new Error('matchMedia not present, legacy browsers require a polyfill');
-    }
-
-    this.queries = {};
-    this.browserIsIncapable = !window.matchMedia('only all').matches;
-}
-
-MediaQueryDispatch.prototype = {
-
-    constructor : MediaQueryDispatch,
-
-    /**
-     * Registers a handler for the given media query
-     *
-     * @param {string} q the media query
-     * @param {object || Array || Function} options either a single query handler object, a function, or an array of query handlers
-     * @param {function} options.match fired when query matched
-     * @param {function} [options.unmatch] fired when a query is no longer matched
-     * @param {function} [options.setup] fired when handler first triggered
-     * @param {boolean} [options.deferSetup=false] whether setup should be run immediately or deferred until query is first matched
-     * @param {boolean} [shouldDegrade=false] whether this particular media query should always run on incapable browsers
-     */
-    register : function(q, options, shouldDegrade) {
-        var queries         = this.queries,
-            isUnconditional = shouldDegrade && this.browserIsIncapable;
-
-        if(!queries[q]) {
-            queries[q] = new MediaQuery(q, isUnconditional);
-        }
-
-        //normalise to object in an array
-        if(isFunction(options)) {
-            options = { match : options };
-        }
-        if(!isArray(options)) {
-            options = [options];
-        }
-        each(options, function(handler) {
-            if (isFunction(handler)) {
-                handler = { match : handler };
-            }
-            queries[q].addHandler(handler);
-        });
-
-        return this;
-    },
-
-    /**
-     * unregisters a query and all it's handlers, or a specific handler for a query
-     *
-     * @param {string} q the media query to target
-     * @param {object || function} [handler] specific handler to unregister
-     */
-    unregister : function(q, handler) {
-        var query = this.queries[q];
-
-        if(query) {
-            if(handler) {
-                query.removeHandler(handler);
-            }
-            else {
-                query.clear();
-                delete this.queries[q];
-            }
-        }
-
-        return this;
-    }
-};
-
-module.exports = MediaQueryDispatch;
-
+        var template = __webpack_require__(134);
+        
+        var script = __webpack_require__(78).default;
+        module.exports = __webpack_require__(78);
+    
+        module.exports.default = normalize(script, template, injectStyles);
+        /* san-hmr component */
+    
 
 /***/ }),
-
-/***/ 186:
-/***/ (function(module, exports, __webpack_require__) {
-
-var QueryHandler = __webpack_require__(187);
-var each = __webpack_require__(72).each;
-
-/**
- * Represents a single media query, manages it's state and registered handlers for this query
- *
- * @constructor
- * @param {string} query the media query string
- * @param {boolean} [isUnconditional=false] whether the media query should run regardless of whether the conditions are met. Primarily for helping older browsers deal with mobile-first design
- */
-function MediaQuery(query, isUnconditional) {
-    this.query = query;
-    this.isUnconditional = isUnconditional;
-    this.handlers = [];
-    this.mql = window.matchMedia(query);
-
-    var self = this;
-    this.listener = function(mql) {
-        // Chrome passes an MediaQueryListEvent object, while other browsers pass MediaQueryList directly
-        self.mql = mql.currentTarget || mql;
-        self.assess();
-    };
-    this.mql.addListener(this.listener);
-}
-
-MediaQuery.prototype = {
-
-    constuctor : MediaQuery,
-
-    /**
-     * add a handler for this query, triggering if already active
-     *
-     * @param {object} handler
-     * @param {function} handler.match callback for when query is activated
-     * @param {function} [handler.unmatch] callback for when query is deactivated
-     * @param {function} [handler.setup] callback for immediate execution when a query handler is registered
-     * @param {boolean} [handler.deferSetup=false] should the setup callback be deferred until the first time the handler is matched?
-     */
-    addHandler : function(handler) {
-        var qh = new QueryHandler(handler);
-        this.handlers.push(qh);
-
-        this.matches() && qh.on();
-    },
-
-    /**
-     * removes the given handler from the collection, and calls it's destroy methods
-     *
-     * @param {object || function} handler the handler to remove
-     */
-    removeHandler : function(handler) {
-        var handlers = this.handlers;
-        each(handlers, function(h, i) {
-            if(h.equals(handler)) {
-                h.destroy();
-                return !handlers.splice(i,1); //remove from array and exit each early
-            }
-        });
-    },
-
-    /**
-     * Determine whether the media query should be considered a match
-     *
-     * @return {Boolean} true if media query can be considered a match, false otherwise
-     */
-    matches : function() {
-        return this.mql.matches || this.isUnconditional;
-    },
-
-    /**
-     * Clears all handlers and unbinds events
-     */
-    clear : function() {
-        each(this.handlers, function(handler) {
-            handler.destroy();
-        });
-        this.mql.removeListener(this.listener);
-        this.handlers.length = 0; //clear array
-    },
-
-    /*
-        * Assesses the query, turning on all handlers if it matches, turning them off if it doesn't match
-        */
-    assess : function() {
-        var action = this.matches() ? 'on' : 'off';
-
-        each(this.handlers, function(handler) {
-            handler[action]();
-        });
-    }
-};
-
-module.exports = MediaQuery;
-
-
-/***/ }),
-
-/***/ 187:
-/***/ (function(module, exports) {
-
-/**
- * Delegate to handle a media query being matched and unmatched.
- *
- * @param {object} options
- * @param {function} options.match callback for when the media query is matched
- * @param {function} [options.unmatch] callback for when the media query is unmatched
- * @param {function} [options.setup] one-time callback triggered the first time a query is matched
- * @param {boolean} [options.deferSetup=false] should the setup callback be run immediately, rather than first time query is matched?
- * @constructor
- */
-function QueryHandler(options) {
-    this.options = options;
-    !options.deferSetup && this.setup();
-}
-
-QueryHandler.prototype = {
-
-    constructor : QueryHandler,
-
-    /**
-     * coordinates setup of the handler
-     *
-     * @function
-     */
-    setup : function() {
-        if(this.options.setup) {
-            this.options.setup();
-        }
-        this.initialised = true;
-    },
-
-    /**
-     * coordinates setup and triggering of the handler
-     *
-     * @function
-     */
-    on : function() {
-        !this.initialised && this.setup();
-        this.options.match && this.options.match();
-    },
-
-    /**
-     * coordinates the unmatch event for the handler
-     *
-     * @function
-     */
-    off : function() {
-        this.options.unmatch && this.options.unmatch();
-    },
-
-    /**
-     * called when a handler is to be destroyed.
-     * delegates to the destroy or unmatch callbacks, depending on availability.
-     *
-     * @function
-     */
-    destroy : function() {
-        this.options.destroy ? this.options.destroy() : this.off();
-    },
-
-    /**
-     * determines equality by reference.
-     * if object is supplied compare options, if function, compare match callback
-     *
-     * @function
-     * @param {object || function} [target] the target for comparison
-     */
-    equals : function(target) {
-        return this.options === target || this.options.match === target;
-    }
-
-};
-
-module.exports = QueryHandler;
-
-
-/***/ }),
-
-/***/ 2:
-/***/ (function(module, exports, __webpack_require__) {
-
-/**
- * Copyright (c) Baidu Inc. All rights reserved.
- *
- * This source code is licensed under the MIT license.
- * See LICENSE file in the project root for license information.
- *
- * @file normalize.js
- * @author clark-t
- */
-
-/* eslint-disable prefer-rest-params */
-
-var defineComponent = __webpack_require__(0).defineComponent;
-
-/**
- * 处理 .san 组件 script 与 template 等部分的组合方法
- *
- * @param {Object|Function} script 组件 script 部分
- * @param {string} template 组件 template 部分的文本
- * @param {string} injectStyles 组件需要注入的 style 列表
- * @return {Class} 组件类
- */
-module.exports = function (script, template, injectStyles) {
-    var dfns = componentDefinitions(script);
-    for (var i = 0; i < dfns.length; i++) {
-        if (template) {
-            if (typeof template === 'string') {
-                dfns[i].template = template;
-            }
-            else if (template instanceof Array) {
-                dfns[i].aPack = template;
-            }
-            else {
-                dfns[i].aNode = template;
-            }
-        }
-        if (injectStyles.length) {
-            injectStylesIntoInitData(dfns[i], injectStyles);
-        }
-    }
-
-    return typeof script === 'object' ? defineComponent(script) : script;
-};
-
-function injectStylesIntoInitData(proto, injectStyles) {
-    var style = {};
-    for (var i = 0; i < injectStyles.length; i++) {
-        objectAssign(style, injectStyles[i]);
-    }
-    var original = proto.initData;
-    proto.initData = original
-        ? function () {
-            return objectAssign({}, original.call(this), {$style: style});
-        }
-        : function () {
-            return style;
-        };
-}
-
-function componentDefinitions(cmpt) {
-    // 当 script 为 Function 时，等价于 class A { static template = 'xxx' }
-    // 可查看 static property 的 babel 编译产物
-    var dfns = [cmpt];
-    // 对于联合 san-store 的情况，需要同时将 template, inited 等挂到原型链上
-    if (typeof cmpt === 'function') {
-        dfns.push(cmpt.prototype);
-        if (cmpt.prototype.constructor) {
-            dfns.push(cmpt.prototype.constructor.prototype);
-        }
-    }
-    return dfns;
-}
-
-// 参考：https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#Polyfill
-function objectAssign(target) {
-    'use strict';
-    if (target === null || target === undefined) {
-        throw new TypeError('Cannot convert undefined or null to object');
-    }
-
-    var to = Object(target);
-
-    for (var index = 1; index < arguments.length; index++) {
-        var nextSource = arguments[index];
-
-        if (nextSource !== null && nextSource !== undefined) {
-            for (var nextKey in nextSource) {
-                if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
-                    to[nextKey] = nextSource[nextKey];
-                }
-            }
-        }
-    }
-    return to;
-}
-
-
-/***/ }),
-
-/***/ 218:
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
-            (typeof self !== "undefined" && self) ||
-            window;
-var apply = Function.prototype.apply;
-
-// DOM APIs, for completeness
-
-exports.setTimeout = function() {
-  return new Timeout(apply.call(setTimeout, scope, arguments), clearTimeout);
-};
-exports.setInterval = function() {
-  return new Timeout(apply.call(setInterval, scope, arguments), clearInterval);
-};
-exports.clearTimeout =
-exports.clearInterval = function(timeout) {
-  if (timeout) {
-    timeout.close();
-  }
-};
-
-function Timeout(id, clearFn) {
-  this._id = id;
-  this._clearFn = clearFn;
-}
-Timeout.prototype.unref = Timeout.prototype.ref = function() {};
-Timeout.prototype.close = function() {
-  this._clearFn.call(scope, this._id);
-};
-
-// Does not start the time, just sets up the members needed.
-exports.enroll = function(item, msecs) {
-  clearTimeout(item._idleTimeoutId);
-  item._idleTimeout = msecs;
-};
-
-exports.unenroll = function(item) {
-  clearTimeout(item._idleTimeoutId);
-  item._idleTimeout = -1;
-};
-
-exports._unrefActive = exports.active = function(item) {
-  clearTimeout(item._idleTimeoutId);
-
-  var msecs = item._idleTimeout;
-  if (msecs >= 0) {
-    item._idleTimeoutId = setTimeout(function onTimeout() {
-      if (item._onTimeout)
-        item._onTimeout();
-    }, msecs);
-  }
-};
-
-// setimmediate attaches itself to the global object
-__webpack_require__(219);
-// On some exotic environments, it's not clear which object `setimmediate` was
-// able to install onto.  Search each possibility in the same order as the
-// `setimmediate` library.
-exports.setImmediate = (typeof self !== "undefined" && self.setImmediate) ||
-                       (typeof global !== "undefined" && global.setImmediate) ||
-                       (this && this.setImmediate);
-exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
-                         (typeof global !== "undefined" && global.clearImmediate) ||
-                         (this && this.clearImmediate);
-
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(3)))
-
-/***/ }),
-
-/***/ 219:
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
-    "use strict";
-
-    if (global.setImmediate) {
-        return;
-    }
-
-    var nextHandle = 1; // Spec says greater than zero
-    var tasksByHandle = {};
-    var currentlyRunningATask = false;
-    var doc = global.document;
-    var registerImmediate;
-
-    function setImmediate(callback) {
-      // Callback can either be a function or a string
-      if (typeof callback !== "function") {
-        callback = new Function("" + callback);
-      }
-      // Copy function arguments
-      var args = new Array(arguments.length - 1);
-      for (var i = 0; i < args.length; i++) {
-          args[i] = arguments[i + 1];
-      }
-      // Store and register the task
-      var task = { callback: callback, args: args };
-      tasksByHandle[nextHandle] = task;
-      registerImmediate(nextHandle);
-      return nextHandle++;
-    }
-
-    function clearImmediate(handle) {
-        delete tasksByHandle[handle];
-    }
-
-    function run(task) {
-        var callback = task.callback;
-        var args = task.args;
-        switch (args.length) {
-        case 0:
-            callback();
-            break;
-        case 1:
-            callback(args[0]);
-            break;
-        case 2:
-            callback(args[0], args[1]);
-            break;
-        case 3:
-            callback(args[0], args[1], args[2]);
-            break;
-        default:
-            callback.apply(undefined, args);
-            break;
-        }
-    }
-
-    function runIfPresent(handle) {
-        // From the spec: "Wait until any invocations of this algorithm started before this one have completed."
-        // So if we're currently running a task, we'll need to delay this invocation.
-        if (currentlyRunningATask) {
-            // Delay by doing a setTimeout. setImmediate was tried instead, but in Firefox 7 it generated a
-            // "too much recursion" error.
-            setTimeout(runIfPresent, 0, handle);
-        } else {
-            var task = tasksByHandle[handle];
-            if (task) {
-                currentlyRunningATask = true;
-                try {
-                    run(task);
-                } finally {
-                    clearImmediate(handle);
-                    currentlyRunningATask = false;
-                }
-            }
-        }
-    }
-
-    function installNextTickImplementation() {
-        registerImmediate = function(handle) {
-            process.nextTick(function () { runIfPresent(handle); });
-        };
-    }
-
-    function canUsePostMessage() {
-        // The test against `importScripts` prevents this implementation from being installed inside a web worker,
-        // where `global.postMessage` means something completely different and can't be used for this purpose.
-        if (global.postMessage && !global.importScripts) {
-            var postMessageIsAsynchronous = true;
-            var oldOnMessage = global.onmessage;
-            global.onmessage = function() {
-                postMessageIsAsynchronous = false;
-            };
-            global.postMessage("", "*");
-            global.onmessage = oldOnMessage;
-            return postMessageIsAsynchronous;
-        }
-    }
-
-    function installPostMessageImplementation() {
-        // Installs an event handler on `global` for the `message` event: see
-        // * https://developer.mozilla.org/en/DOM/window.postMessage
-        // * http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#crossDocumentMessages
-
-        var messagePrefix = "setImmediate$" + Math.random() + "$";
-        var onGlobalMessage = function(event) {
-            if (event.source === global &&
-                typeof event.data === "string" &&
-                event.data.indexOf(messagePrefix) === 0) {
-                runIfPresent(+event.data.slice(messagePrefix.length));
-            }
-        };
-
-        if (global.addEventListener) {
-            global.addEventListener("message", onGlobalMessage, false);
-        } else {
-            global.attachEvent("onmessage", onGlobalMessage);
-        }
-
-        registerImmediate = function(handle) {
-            global.postMessage(messagePrefix + handle, "*");
-        };
-    }
-
-    function installMessageChannelImplementation() {
-        var channel = new MessageChannel();
-        channel.port1.onmessage = function(event) {
-            var handle = event.data;
-            runIfPresent(handle);
-        };
-
-        registerImmediate = function(handle) {
-            channel.port2.postMessage(handle);
-        };
-    }
-
-    function installReadyStateChangeImplementation() {
-        var html = doc.documentElement;
-        registerImmediate = function(handle) {
-            // Create a <script> element; its readystatechange event will be fired asynchronously once it is inserted
-            // into the document. Do so, thus queuing up the task. Remember to clean up once it's been called.
-            var script = doc.createElement("script");
-            script.onreadystatechange = function () {
-                runIfPresent(handle);
-                script.onreadystatechange = null;
-                html.removeChild(script);
-                script = null;
-            };
-            html.appendChild(script);
-        };
-    }
-
-    function installSetTimeoutImplementation() {
-        registerImmediate = function(handle) {
-            setTimeout(runIfPresent, 0, handle);
-        };
-    }
-
-    // If supported, we should attach to the prototype of global, since that is where setTimeout et al. live.
-    var attachTo = Object.getPrototypeOf && Object.getPrototypeOf(global);
-    attachTo = attachTo && attachTo.setTimeout ? attachTo : global;
-
-    // Don't get fooled by e.g. browserify environments.
-    if ({}.toString.call(global.process) === "[object process]") {
-        // For Node.js before 0.9
-        installNextTickImplementation();
-
-    } else if (canUsePostMessage()) {
-        // For non-IE10 modern browsers
-        installPostMessageImplementation();
-
-    } else if (global.MessageChannel) {
-        // For web workers, where supported
-        installMessageChannelImplementation();
-
-    } else if (doc && "onreadystatechange" in doc.createElement("script")) {
-        // For IE 6–8
-        installReadyStateChangeImplementation();
-
-    } else {
-        // For older browsers
-        installSetTimeoutImplementation();
-    }
-
-    attachTo.setImmediate = setImmediate;
-    attachTo.clearImmediate = clearImmediate;
-}(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
-
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(3), __webpack_require__(220)))
-
-/***/ }),
-
-/***/ 220:
-/***/ (function(module, exports) {
-
-// shim for using process in browser
-var process = module.exports = {};
-
-// cached from whatever global is present so that test runners that stub it
-// don't break things.  But we need to wrap it in a try catch in case it is
-// wrapped in strict mode code which doesn't define any globals.  It's inside a
-// function because try/catches deoptimize in certain engines.
-
-var cachedSetTimeout;
-var cachedClearTimeout;
-
-function defaultSetTimout() {
-    throw new Error('setTimeout has not been defined');
-}
-function defaultClearTimeout () {
-    throw new Error('clearTimeout has not been defined');
-}
-(function () {
-    try {
-        if (typeof setTimeout === 'function') {
-            cachedSetTimeout = setTimeout;
-        } else {
-            cachedSetTimeout = defaultSetTimout;
-        }
-    } catch (e) {
-        cachedSetTimeout = defaultSetTimout;
-    }
-    try {
-        if (typeof clearTimeout === 'function') {
-            cachedClearTimeout = clearTimeout;
-        } else {
-            cachedClearTimeout = defaultClearTimeout;
-        }
-    } catch (e) {
-        cachedClearTimeout = defaultClearTimeout;
-    }
-} ())
-function runTimeout(fun) {
-    if (cachedSetTimeout === setTimeout) {
-        //normal enviroments in sane situations
-        return setTimeout(fun, 0);
-    }
-    // if setTimeout wasn't available but was latter defined
-    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
-        cachedSetTimeout = setTimeout;
-        return setTimeout(fun, 0);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedSetTimeout(fun, 0);
-    } catch(e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
-            return cachedSetTimeout.call(null, fun, 0);
-        } catch(e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
-            return cachedSetTimeout.call(this, fun, 0);
-        }
-    }
-
-
-}
-function runClearTimeout(marker) {
-    if (cachedClearTimeout === clearTimeout) {
-        //normal enviroments in sane situations
-        return clearTimeout(marker);
-    }
-    // if clearTimeout wasn't available but was latter defined
-    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
-        cachedClearTimeout = clearTimeout;
-        return clearTimeout(marker);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedClearTimeout(marker);
-    } catch (e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
-            return cachedClearTimeout.call(null, marker);
-        } catch (e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
-            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
-            return cachedClearTimeout.call(this, marker);
-        }
-    }
-
-
-
-}
-var queue = [];
-var draining = false;
-var currentQueue;
-var queueIndex = -1;
-
-function cleanUpNextTick() {
-    if (!draining || !currentQueue) {
-        return;
-    }
-    draining = false;
-    if (currentQueue.length) {
-        queue = currentQueue.concat(queue);
-    } else {
-        queueIndex = -1;
-    }
-    if (queue.length) {
-        drainQueue();
-    }
-}
-
-function drainQueue() {
-    if (draining) {
-        return;
-    }
-    var timeout = runTimeout(cleanUpNextTick);
-    draining = true;
-
-    var len = queue.length;
-    while(len) {
-        currentQueue = queue;
-        queue = [];
-        while (++queueIndex < len) {
-            if (currentQueue) {
-                currentQueue[queueIndex].run();
-            }
-        }
-        queueIndex = -1;
-        len = queue.length;
-    }
-    currentQueue = null;
-    draining = false;
-    runClearTimeout(timeout);
-}
-
-process.nextTick = function (fun) {
-    var args = new Array(arguments.length - 1);
-    if (arguments.length > 1) {
-        for (var i = 1; i < arguments.length; i++) {
-            args[i - 1] = arguments[i];
-        }
-    }
-    queue.push(new Item(fun, args));
-    if (queue.length === 1 && !draining) {
-        runTimeout(drainQueue);
-    }
-};
-
-// v8 likes predictible objects
-function Item(fun, array) {
-    this.fun = fun;
-    this.array = array;
-}
-Item.prototype.run = function () {
-    this.fun.apply(null, this.array);
-};
-process.title = 'browser';
-process.browser = true;
-process.env = {};
-process.argv = [];
-process.version = ''; // empty string to avoid regexp issues
-process.versions = {};
-
-function noop() {}
-
-process.on = noop;
-process.addListener = noop;
-process.once = noop;
-process.off = noop;
-process.removeListener = noop;
-process.removeAllListeners = noop;
-process.emit = noop;
-process.prependListener = noop;
-process.prependOnceListener = noop;
-
-process.listeners = function (name) { return [] }
-
-process.binding = function (name) {
-    throw new Error('process.binding is not supported');
-};
-
-process.cwd = function () { return '/' };
-process.chdir = function (dir) {
-    throw new Error('process.chdir is not supported');
-};
-process.umask = function() { return 0; };
-
-
-/***/ }),
-
-/***/ 232:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _san_docit_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4);
-/* harmony import */ var _san_docit_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_san_docit_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _san_docit_node_modules_css_loader_dist_cjs_js_san_docit_node_modules_mini_css_extract_plugin_dist_loader_js_san_docit_node_modules_css_loader_dist_cjs_js_nprogress_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(37);
-
-            
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = _san_docit_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_san_docit_node_modules_css_loader_dist_cjs_js_san_docit_node_modules_mini_css_extract_plugin_dist_loader_js_san_docit_node_modules_css_loader_dist_cjs_js_nprogress_css__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"], options);
-
-
-
-/* unused harmony default export */ var _unused_webpack_default_export = (_san_docit_node_modules_css_loader_dist_cjs_js_san_docit_node_modules_mini_css_extract_plugin_dist_loader_js_san_docit_node_modules_css_loader_dist_cjs_js_nprogress_css__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].locals || {});
-
-/***/ }),
-
-/***/ 29:
+/* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18583,35 +18749,7 @@ var ZoomOutOutlined = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896
 
 
 /***/ }),
-
-/***/ 3:
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || new Function("return this")();
-} catch (e) {
-	// This works if the window reference is available
-	if (typeof window === "object") g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-
-/***/ 31:
+/* 14 */
 /***/ (function(module, exports) {
 
 /**
@@ -18650,8 +18788,7 @@ exports = module.exports = on;
 
 
 /***/ }),
-
-/***/ 32:
+/* 15 */
 /***/ (function(module, exports) {
 
 /**
@@ -18690,374 +18827,32 @@ exports = module.exports = un;
 
 
 /***/ }),
-
-/***/ 37:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _san_docit_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5);
-/* harmony import */ var _san_docit_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_san_docit_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
-// Imports
-
-var ___CSS_LOADER_EXPORT___ = _san_docit_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
-// Module
-___CSS_LOADER_EXPORT___.push([module.i, "// extracted by mini-css-extract-plugin\nexport {};", ""]);
-// Exports
-/* harmony default export */ __webpack_exports__["a"] = (___CSS_LOADER_EXPORT___);
-
-
-/***/ }),
-
-/***/ 4:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var isOldIE = function isOldIE() {
-  var memo;
-  return function memorize() {
-    if (typeof memo === 'undefined') {
-      // Test for IE <= 9 as proposed by Browserhacks
-      // @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
-      // Tests for existence of standard globals is to allow style-loader
-      // to operate correctly into non-standard environments
-      // @see https://github.com/webpack-contrib/style-loader/issues/177
-      memo = Boolean(window && document && document.all && !window.atob);
-    }
-
-    return memo;
-  };
-}();
-
-var getTarget = function getTarget() {
-  var memo = {};
-  return function memorize(target) {
-    if (typeof memo[target] === 'undefined') {
-      var styleTarget = document.querySelector(target); // Special case to return head of iframe instead of iframe itself
-
-      if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
-        try {
-          // This will throw an exception if access to iframe is blocked
-          // due to cross-origin restrictions
-          styleTarget = styleTarget.contentDocument.head;
-        } catch (e) {
-          // istanbul ignore next
-          styleTarget = null;
-        }
-      }
-
-      memo[target] = styleTarget;
-    }
-
-    return memo[target];
-  };
-}();
-
-var stylesInDom = [];
-
-function getIndexByIdentifier(identifier) {
-  var result = -1;
-
-  for (var i = 0; i < stylesInDom.length; i++) {
-    if (stylesInDom[i].identifier === identifier) {
-      result = i;
-      break;
-    }
-  }
-
-  return result;
-}
-
-function modulesToDom(list, options) {
-  var idCountMap = {};
-  var identifiers = [];
-
-  for (var i = 0; i < list.length; i++) {
-    var item = list[i];
-    var id = options.base ? item[0] + options.base : item[0];
-    var count = idCountMap[id] || 0;
-    var identifier = "".concat(id, " ").concat(count);
-    idCountMap[id] = count + 1;
-    var index = getIndexByIdentifier(identifier);
-    var obj = {
-      css: item[1],
-      media: item[2],
-      sourceMap: item[3]
-    };
-
-    if (index !== -1) {
-      stylesInDom[index].references++;
-      stylesInDom[index].updater(obj);
-    } else {
-      stylesInDom.push({
-        identifier: identifier,
-        updater: addStyle(obj, options),
-        references: 1
-      });
-    }
-
-    identifiers.push(identifier);
-  }
-
-  return identifiers;
-}
-
-function insertStyleElement(options) {
-  var style = document.createElement('style');
-  var attributes = options.attributes || {};
-
-  if (typeof attributes.nonce === 'undefined') {
-    var nonce =  true ? __webpack_require__.nc : undefined;
-
-    if (nonce) {
-      attributes.nonce = nonce;
-    }
-  }
-
-  Object.keys(attributes).forEach(function (key) {
-    style.setAttribute(key, attributes[key]);
-  });
-
-  if (typeof options.insert === 'function') {
-    options.insert(style);
-  } else {
-    var target = getTarget(options.insert || 'head');
-
-    if (!target) {
-      throw new Error("Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.");
-    }
-
-    target.appendChild(style);
-  }
-
-  return style;
-}
-
-function removeStyleElement(style) {
-  // istanbul ignore if
-  if (style.parentNode === null) {
-    return false;
-  }
-
-  style.parentNode.removeChild(style);
-}
-/* istanbul ignore next  */
-
-
-var replaceText = function replaceText() {
-  var textStore = [];
-  return function replace(index, replacement) {
-    textStore[index] = replacement;
-    return textStore.filter(Boolean).join('\n');
-  };
-}();
-
-function applyToSingletonTag(style, index, remove, obj) {
-  var css = remove ? '' : obj.media ? "@media ".concat(obj.media, " {").concat(obj.css, "}") : obj.css; // For old IE
-
-  /* istanbul ignore if  */
-
-  if (style.styleSheet) {
-    style.styleSheet.cssText = replaceText(index, css);
-  } else {
-    var cssNode = document.createTextNode(css);
-    var childNodes = style.childNodes;
-
-    if (childNodes[index]) {
-      style.removeChild(childNodes[index]);
-    }
-
-    if (childNodes.length) {
-      style.insertBefore(cssNode, childNodes[index]);
-    } else {
-      style.appendChild(cssNode);
-    }
-  }
-}
-
-function applyToTag(style, options, obj) {
-  var css = obj.css;
-  var media = obj.media;
-  var sourceMap = obj.sourceMap;
-
-  if (media) {
-    style.setAttribute('media', media);
-  } else {
-    style.removeAttribute('media');
-  }
-
-  if (sourceMap && typeof btoa !== 'undefined') {
-    css += "\n/*# sourceMappingURL=data:application/json;base64,".concat(btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))), " */");
-  } // For old IE
-
-  /* istanbul ignore if  */
-
-
-  if (style.styleSheet) {
-    style.styleSheet.cssText = css;
-  } else {
-    while (style.firstChild) {
-      style.removeChild(style.firstChild);
-    }
-
-    style.appendChild(document.createTextNode(css));
-  }
-}
-
-var singleton = null;
-var singletonCounter = 0;
-
-function addStyle(obj, options) {
-  var style;
-  var update;
-  var remove;
-
-  if (options.singleton) {
-    var styleIndex = singletonCounter++;
-    style = singleton || (singleton = insertStyleElement(options));
-    update = applyToSingletonTag.bind(null, style, styleIndex, false);
-    remove = applyToSingletonTag.bind(null, style, styleIndex, true);
-  } else {
-    style = insertStyleElement(options);
-    update = applyToTag.bind(null, style, options);
-
-    remove = function remove() {
-      removeStyleElement(style);
-    };
-  }
-
-  update(obj);
-  return function updateStyle(newObj) {
-    if (newObj) {
-      if (newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap) {
-        return;
-      }
-
-      update(obj = newObj);
-    } else {
-      remove();
-    }
-  };
-}
-
-module.exports = function (list, options) {
-  options = options || {}; // Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-  // tags it will allow on a page
-
-  if (!options.singleton && typeof options.singleton !== 'boolean') {
-    options.singleton = isOldIE();
-  }
-
-  list = list || [];
-  var lastIdentifiers = modulesToDom(list, options);
-  return function update(newList) {
-    newList = newList || [];
-
-    if (Object.prototype.toString.call(newList) !== '[object Array]') {
-      return;
-    }
-
-    for (var i = 0; i < lastIdentifiers.length; i++) {
-      var identifier = lastIdentifiers[i];
-      var index = getIndexByIdentifier(identifier);
-      stylesInDom[index].references--;
-    }
-
-    var newLastIdentifiers = modulesToDom(newList, options);
-
-    for (var _i = 0; _i < lastIdentifiers.length; _i++) {
-      var _identifier = lastIdentifiers[_i];
-
-      var _index = getIndexByIdentifier(_identifier);
-
-      if (stylesInDom[_index].references === 0) {
-        stylesInDom[_index].updater();
-
-        stylesInDom.splice(_index, 1);
-      }
-    }
-
-    lastIdentifiers = newLastIdentifiers;
-  };
-};
-
-/***/ }),
-
-/***/ 5:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/*
-  MIT License http://www.opensource.org/licenses/mit-license.php
-  Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-// eslint-disable-next-line func-names
-module.exports = function (cssWithMappingToString) {
-  var list = []; // return the list of modules as css string
-
-  list.toString = function toString() {
-    return this.map(function (item) {
-      var content = cssWithMappingToString(item);
-
-      if (item[2]) {
-        return "@media ".concat(item[2], " {").concat(content, "}");
-      }
-
-      return content;
-    }).join('');
-  }; // import a list of modules into the list
-  // eslint-disable-next-line func-names
-
-
-  list.i = function (modules, mediaQuery, dedupe) {
-    if (typeof modules === 'string') {
-      // eslint-disable-next-line no-param-reassign
-      modules = [[null, modules, '']];
-    }
-
-    var alreadyImportedModules = {};
-
-    if (dedupe) {
-      for (var i = 0; i < this.length; i++) {
-        // eslint-disable-next-line prefer-destructuring
-        var id = this[i][0];
-
-        if (id != null) {
-          alreadyImportedModules[id] = true;
-        }
-      }
-    }
-
-    for (var _i = 0; _i < modules.length; _i++) {
-      var item = [].concat(modules[_i]);
-
-      if (dedupe && alreadyImportedModules[item[0]]) {
-        // eslint-disable-next-line no-continue
-        continue;
-      }
-
-      if (mediaQuery) {
-        if (!item[2]) {
-          item[2] = mediaQuery;
-        } else {
-          item[2] = "".concat(mediaQuery, " and ").concat(item[2]);
-        }
-      }
-
-      list.push(item);
-    }
-  };
-
-  return list;
-};
-
-/***/ }),
-
-/***/ 72:
+/* 16 */,
+/* 17 */,
+/* 18 */,
+/* 19 */,
+/* 20 */,
+/* 21 */,
+/* 22 */,
+/* 23 */,
+/* 24 */,
+/* 25 */,
+/* 26 */,
+/* 27 */,
+/* 28 */,
+/* 29 */,
+/* 30 */,
+/* 31 */,
+/* 32 */,
+/* 33 */,
+/* 34 */,
+/* 35 */,
+/* 36 */,
+/* 37 */,
+/* 38 */,
+/* 39 */,
+/* 40 */,
+/* 41 */
 /***/ (function(module, exports) {
 
 /**
@@ -19106,6 +18901,1809 @@ module.exports = {
 };
 
 
-/***/ })
+/***/ }),
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */,
+/* 71 */,
+/* 72 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-}]);
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var san__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
+/* harmony import */ var san__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(san__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var san_docit_src_common_san_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6);
+/* harmony import */ var san_docit_src_common_san_router__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(san_docit_src_common_san_router__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _content_area__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(80);
+/* harmony import */ var _content_area__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_content_area__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _components_tree__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(12);
+/* harmony import */ var _components_tree__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_components_tree__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _components_drawer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(82);
+/* harmony import */ var _components_drawer__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_components_drawer__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var san_docit_src_common_hub__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(9);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(8);
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    'router-link': san_docit_src_common_san_router__WEBPACK_IMPORTED_MODULE_1__["Link"],
+    'content-area': _content_area__WEBPACK_IMPORTED_MODULE_2___default.a,
+    drawer: (_components_drawer__WEBPACK_IMPORTED_MODULE_4___default()),
+    tree: (_components_tree__WEBPACK_IMPORTED_MODULE_3___default())
+  },
+  dataTypes: {
+    docit: san__WEBPACK_IMPORTED_MODULE_0__["DataTypes"].object
+  },
+  computed: {
+    sidebar() {
+      const docit = this.data.get('docit');
+      const sidebar = docit.themeConfig.sidebar;
+      const current = docit.pathname || location.pathname;
+
+      if (sidebar[current]) {
+        return sidebar[current];
+      }
+
+      for (let route in sidebar) {
+        let list = sidebar[route];
+
+        for (let i = 0; i < list.length; i++) {
+          if (list[i].path === current) {
+            return list;
+          }
+        }
+      }
+
+      return sidebar['/'] || [];
+    }
+
+  },
+
+  initData() {
+    return {
+      isShowSidebar: true,
+      selectedNode: []
+    };
+  },
+
+  inited() {
+    san_docit_src_common_hub__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"].on('RouterChanged', this.isActive.bind(this));
+  },
+
+  isActive(e) {
+    const selected = [];
+    const base = _utils__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"].base;
+    const sidebar = this.data.get('sidebar');
+    _utils__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"].treeWalk(sidebar, item => {
+      if (base + item.path === e.path) {
+        selected.push(item);
+      }
+    });
+    this.data.set('selectedNodes', selected);
+  },
+
+  getPath(node) {
+    return _utils__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"].base + node.path;
+  }
+
+});
+/* san-hmr disable */
+
+/***/ }),
+/* 73 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var san_src_browser_on__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(14);
+/* harmony import */ var san_src_browser_on__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(san_src_browser_on__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var san_src_browser_un__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(15);
+/* harmony import */ var san_src_browser_un__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(san_src_browser_un__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_tree__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(12);
+/* harmony import */ var _components_tree__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_components_tree__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8);
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    tree: (_components_tree__WEBPACK_IMPORTED_MODULE_2___default())
+  },
+
+  initData() {
+    return {
+      toc: {},
+      isShowToc: true,
+      selectedNodes: []
+    };
+  },
+
+  inited() {
+    let toc = {}; // SSR 时，可从最外层传入docit；client-entry时，从全局变量取
+
+    const docit = this.data.get('docit');
+
+    if (docit && docit.toc) {
+      toc = docit.toc;
+    } else if (global.SAN_DOCIT && global.SAN_DOCIT.toc) {
+      toc = global.SAN_DOCIT.toc;
+    }
+
+    this.data.set('toc', toc);
+  },
+
+  attached() {
+    // router 子组件无法通过组件事件或DOM树向上传递事件
+    global.hub.on('changed', this.onChanged.bind(this));
+    this.__onScroll = this.onScroll.bind(this);
+    this.__onResize = this.onResize.bind(this);
+    san_src_browser_on__WEBPACK_IMPORTED_MODULE_0___default()(global, 'scroll', this.__onScroll);
+    san_src_browser_on__WEBPACK_IMPORTED_MODULE_0___default()(global, 'resize', this.__onResize);
+    this.initScroll();
+    this.resize(); // SSR 时默认存在 HTML，清空后由 Router 渲染
+
+    this.ref('view').innerHTML = '';
+  },
+
+  getHash(hash) {
+    const docit = this.data.get('docit');
+    const pathname = docit.pathname ? _utils__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"].base + docit.pathname : location.pathname;
+    return pathname + '#' + hash;
+  },
+
+  onChanged(toc) {
+    this.data.set('toc', toc);
+    this.nextTick(this.initScroll.bind(this));
+    this.resize();
+  },
+
+  getTocCount() {
+    const toc = this.data.get('toc');
+    let count = 0;
+    _utils__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"].treeWalk(toc, () => count++);
+    return count;
+  },
+
+  onResize() {
+    if (this.timer) {
+      global.clearTimeout(this.timer);
+    }
+
+    this.timer = global.setTimeout(() => {
+      this.resize();
+      this.timer = null;
+    }, 10);
+  },
+
+  resize() {
+    const width = document.documentElement.clientWidth || document.body.clientWidth;
+    const isShowToc = width > 1000 && this.getTocCount() > 2;
+
+    if (isShowToc !== this.data.get('isShowToc')) {
+      this.data.set('isShowToc', isShowToc);
+    }
+
+    const isShowSidebar = width > 800;
+
+    if (isShowSidebar !== this.parent.data.get('isShowSidebar')) {
+      this.parent.data.set('isShowSidebar', isShowSidebar);
+    }
+  },
+
+  initScroll() {
+    const view = this.ref('view');
+    const doms = view.querySelectorAll('H2, H3');
+
+    if (!doms) {
+      return;
+    }
+
+    this.postions = [];
+    this.hashs = [];
+    doms.forEach(dom => {
+      this.postions.push(dom.offsetTop);
+      this.hashs.push(dom.id);
+    });
+    const len = this.hashs.length;
+    this.postions[len] = Number.MAX_VALUE;
+    this.hashs[len] = this.hashs[this.hashs.length - 1];
+    const toc = this.data.get('toc');
+
+    if (toc && toc.children && toc.children.length > 0) {
+      this.data.set('selectedNodes', [toc.children[0]]);
+    }
+  },
+
+  onScroll(evt) {
+    if (this.timer) {
+      global.clearTimeout(this.timer);
+    }
+
+    this.timer = global.setTimeout(() => {
+      this.scrollPostion();
+      this.timer = null;
+    }, 10);
+  },
+
+  scrollPostion() {
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    const index = this.postions.findIndex(pos => pos >= scrollTop);
+
+    if (index !== -1) {
+      this.changeSelected(this.hashs[index]);
+    }
+  },
+
+  changeSelected(hash) {
+    if (this.selected === hash) {
+      return;
+    }
+
+    const selected = [];
+    const toc = this.data.get('toc');
+    _utils__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"].treeWalk(toc, item => {
+      if (item.hash === hash) {
+        selected.push(item);
+      }
+    });
+    this.data.set('selectedNodes', selected);
+    this.selected = hash;
+  },
+
+  detached() {
+    san_src_browser_un__WEBPACK_IMPORTED_MODULE_1___default()(global, 'scroll', this.__onScroll);
+    san_src_browser_un__WEBPACK_IMPORTED_MODULE_1___default()(global, 'resize', this.__onResize);
+  }
+
+});
+/* san-hmr disable */
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(3)))
+
+/***/ }),
+/* 74 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var san__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
+/* harmony import */ var san__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(san__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {// SSR 不支持 self 啊。。
+    // 'tree-node': 'self'
+  },
+  dataTypes: {
+    treeNode: san__WEBPACK_IMPORTED_MODULE_0__["DataTypes"].object
+  },
+
+  getNodeId(node) {
+    return node.path || node.hash;
+  }
+
+});
+/* san-hmr disable */
+
+/***/ }),
+/* 75 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  initData() {
+    return {
+      isOpened: false
+    };
+  },
+
+  onClick() {
+    this.data.set('isOpened', !this.data.get('isOpened'));
+  }
+
+});
+/* san-hmr disable */
+
+/***/ }),
+/* 76 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  initData() {
+    return {
+      isExpand: false
+    };
+  },
+
+  toggleExpand() {
+    this.data.set('isExpand', !this.data.get('isExpand'));
+  }
+
+});
+/* san-hmr disable */
+
+/***/ }),
+/* 77 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({});
+/* san-hmr disable */
+
+/***/ }),
+/* 78 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// EXTERNAL MODULE: /Volumes/Source/san/santd/node_modules/san/dist/san.dev.js
+var san_dev = __webpack_require__(0);
+
+// EXTERNAL MODULE: /Volumes/Source/san/santd/node_modules/@san-docit/theme-default/components/tree-node.san
+var tree_node = __webpack_require__(81);
+var tree_node_default = /*#__PURE__*/__webpack_require__.n(tree_node);
+
+// CONCATENATED MODULE: /Volumes/Source/san/santd/node_modules/@san-docit/theme-default/components/dom.js
+const hasClass = (dom, name) => {
+  return new RegExp('(\\s|^)' + name + '(\\s|$)').test(dom.className);
+};
+
+const addClass = (dom, name) => {
+  if (hasClass(dom, name)) {
+    return;
+  }
+
+  dom.className += ' ' + name;
+};
+
+const removeClass = (dom, name) => {
+  if (!hasClass(dom, name)) {
+    return;
+  }
+
+  const reg = new RegExp('(\\s|^)' + name + '(\\s|$)');
+  dom.className = dom.className.replace(reg, '');
+};
+
+/* harmony default export */ var dom = ({
+  hasClass,
+  addClass,
+  removeClass
+});
+// CONCATENATED MODULE: /Volumes/Source/san/santd/node_modules/@san-docit/theme-default/components/tree.san?lang=js&san=&type=script
+
+
+
+/* harmony default export */ var treelang_js_san_type_script = __webpack_exports__["default"] = ({
+  components: {
+    'tree-node': tree_node_default.a
+  },
+  dataTypes: {
+    treeData: san_dev["DataTypes"].object,
+    selectedNodes: san_dev["DataTypes"].array
+  },
+
+  attached() {
+    this.watch('selectedNodes', this.active);
+    const selectedNodes = this.data.get('selectedNodes');
+
+    if (selectedNodes && selectedNodes.length > 0) {
+      this.active(selectedNodes);
+    }
+  },
+
+  active(val) {
+    const list = this.el.querySelectorAll('li[data-id]');
+
+    for (let i = 0; i < list.length; i++) {
+      const el = list[i];
+      const dataId = el.getAttribute('data-id');
+      const finded = val.find(item => {
+        return dataId === (item.path || item.hash);
+      });
+      const isActive = finded !== undefined;
+      isActive ? dom.addClass(el, 'active') : dom.removeClass(el, 'active');
+    }
+  }
+
+});
+/* san-hmr disable */
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+        var normalize = __webpack_require__(2);
+        __webpack_require__(131);
+var injectStyles = [];
+
+        var template = __webpack_require__(132);
+        
+        var script = __webpack_require__(72).default;
+        module.exports = __webpack_require__(72);
+    
+        module.exports.default = normalize(script, template, injectStyles);
+        /* san-hmr component */
+    
+
+/***/ }),
+/* 80 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+        var normalize = __webpack_require__(2);
+        var injectStyles = [];
+
+        var template = __webpack_require__(133);
+        
+        var script = __webpack_require__(73).default;
+        module.exports = __webpack_require__(73);
+    
+        module.exports.default = normalize(script, template, injectStyles);
+        /* san-hmr component */
+    
+
+/***/ }),
+/* 81 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+        var normalize = __webpack_require__(2);
+        var injectStyles = [];
+
+        var template = __webpack_require__(135);
+        
+        var script = __webpack_require__(74).default;
+        module.exports = __webpack_require__(74);
+    
+        module.exports.default = normalize(script, template, injectStyles);
+        /* san-hmr component */
+    
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+        var normalize = __webpack_require__(2);
+        __webpack_require__(136);
+var injectStyles = [];
+
+        var template = __webpack_require__(137);
+        
+        var script = __webpack_require__(75).default;
+        module.exports = __webpack_require__(75);
+    
+        module.exports.default = normalize(script, template, injectStyles);
+        /* san-hmr component */
+    
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+        var normalize = __webpack_require__(2);
+        __webpack_require__(138);
+var injectStyles = [];
+
+        var template = __webpack_require__(139);
+        
+        var script = __webpack_require__(76).default;
+        module.exports = __webpack_require__(76);
+    
+        module.exports.default = normalize(script, template, injectStyles);
+        /* san-hmr component */
+    
+
+/***/ }),
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+        var normalize = __webpack_require__(2);
+        var injectStyles = [];
+
+        var template = __webpack_require__(141);
+        
+        var script = __webpack_require__(77).default;
+        module.exports = __webpack_require__(77);
+    
+        module.exports.default = normalize(script, template, injectStyles);
+        /* san-hmr component */
+    
+
+/***/ }),
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */,
+/* 98 */,
+/* 99 */,
+/* 100 */,
+/* 101 */,
+/* 102 */,
+/* 103 */,
+/* 104 */,
+/* 105 */,
+/* 106 */,
+/* 107 */,
+/* 108 */,
+/* 109 */,
+/* 110 */,
+/* 111 */,
+/* 112 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var MediaQueryDispatch = __webpack_require__(113);
+module.exports = new MediaQueryDispatch();
+
+
+/***/ }),
+/* 113 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var MediaQuery = __webpack_require__(114);
+var Util = __webpack_require__(41);
+var each = Util.each;
+var isFunction = Util.isFunction;
+var isArray = Util.isArray;
+
+/**
+ * Allows for registration of query handlers.
+ * Manages the query handler's state and is responsible for wiring up browser events
+ *
+ * @constructor
+ */
+function MediaQueryDispatch () {
+    if(!window.matchMedia) {
+        throw new Error('matchMedia not present, legacy browsers require a polyfill');
+    }
+
+    this.queries = {};
+    this.browserIsIncapable = !window.matchMedia('only all').matches;
+}
+
+MediaQueryDispatch.prototype = {
+
+    constructor : MediaQueryDispatch,
+
+    /**
+     * Registers a handler for the given media query
+     *
+     * @param {string} q the media query
+     * @param {object || Array || Function} options either a single query handler object, a function, or an array of query handlers
+     * @param {function} options.match fired when query matched
+     * @param {function} [options.unmatch] fired when a query is no longer matched
+     * @param {function} [options.setup] fired when handler first triggered
+     * @param {boolean} [options.deferSetup=false] whether setup should be run immediately or deferred until query is first matched
+     * @param {boolean} [shouldDegrade=false] whether this particular media query should always run on incapable browsers
+     */
+    register : function(q, options, shouldDegrade) {
+        var queries         = this.queries,
+            isUnconditional = shouldDegrade && this.browserIsIncapable;
+
+        if(!queries[q]) {
+            queries[q] = new MediaQuery(q, isUnconditional);
+        }
+
+        //normalise to object in an array
+        if(isFunction(options)) {
+            options = { match : options };
+        }
+        if(!isArray(options)) {
+            options = [options];
+        }
+        each(options, function(handler) {
+            if (isFunction(handler)) {
+                handler = { match : handler };
+            }
+            queries[q].addHandler(handler);
+        });
+
+        return this;
+    },
+
+    /**
+     * unregisters a query and all it's handlers, or a specific handler for a query
+     *
+     * @param {string} q the media query to target
+     * @param {object || function} [handler] specific handler to unregister
+     */
+    unregister : function(q, handler) {
+        var query = this.queries[q];
+
+        if(query) {
+            if(handler) {
+                query.removeHandler(handler);
+            }
+            else {
+                query.clear();
+                delete this.queries[q];
+            }
+        }
+
+        return this;
+    }
+};
+
+module.exports = MediaQueryDispatch;
+
+
+/***/ }),
+/* 114 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var QueryHandler = __webpack_require__(115);
+var each = __webpack_require__(41).each;
+
+/**
+ * Represents a single media query, manages it's state and registered handlers for this query
+ *
+ * @constructor
+ * @param {string} query the media query string
+ * @param {boolean} [isUnconditional=false] whether the media query should run regardless of whether the conditions are met. Primarily for helping older browsers deal with mobile-first design
+ */
+function MediaQuery(query, isUnconditional) {
+    this.query = query;
+    this.isUnconditional = isUnconditional;
+    this.handlers = [];
+    this.mql = window.matchMedia(query);
+
+    var self = this;
+    this.listener = function(mql) {
+        // Chrome passes an MediaQueryListEvent object, while other browsers pass MediaQueryList directly
+        self.mql = mql.currentTarget || mql;
+        self.assess();
+    };
+    this.mql.addListener(this.listener);
+}
+
+MediaQuery.prototype = {
+
+    constuctor : MediaQuery,
+
+    /**
+     * add a handler for this query, triggering if already active
+     *
+     * @param {object} handler
+     * @param {function} handler.match callback for when query is activated
+     * @param {function} [handler.unmatch] callback for when query is deactivated
+     * @param {function} [handler.setup] callback for immediate execution when a query handler is registered
+     * @param {boolean} [handler.deferSetup=false] should the setup callback be deferred until the first time the handler is matched?
+     */
+    addHandler : function(handler) {
+        var qh = new QueryHandler(handler);
+        this.handlers.push(qh);
+
+        this.matches() && qh.on();
+    },
+
+    /**
+     * removes the given handler from the collection, and calls it's destroy methods
+     *
+     * @param {object || function} handler the handler to remove
+     */
+    removeHandler : function(handler) {
+        var handlers = this.handlers;
+        each(handlers, function(h, i) {
+            if(h.equals(handler)) {
+                h.destroy();
+                return !handlers.splice(i,1); //remove from array and exit each early
+            }
+        });
+    },
+
+    /**
+     * Determine whether the media query should be considered a match
+     *
+     * @return {Boolean} true if media query can be considered a match, false otherwise
+     */
+    matches : function() {
+        return this.mql.matches || this.isUnconditional;
+    },
+
+    /**
+     * Clears all handlers and unbinds events
+     */
+    clear : function() {
+        each(this.handlers, function(handler) {
+            handler.destroy();
+        });
+        this.mql.removeListener(this.listener);
+        this.handlers.length = 0; //clear array
+    },
+
+    /*
+        * Assesses the query, turning on all handlers if it matches, turning them off if it doesn't match
+        */
+    assess : function() {
+        var action = this.matches() ? 'on' : 'off';
+
+        each(this.handlers, function(handler) {
+            handler[action]();
+        });
+    }
+};
+
+module.exports = MediaQuery;
+
+
+/***/ }),
+/* 115 */
+/***/ (function(module, exports) {
+
+/**
+ * Delegate to handle a media query being matched and unmatched.
+ *
+ * @param {object} options
+ * @param {function} options.match callback for when the media query is matched
+ * @param {function} [options.unmatch] callback for when the media query is unmatched
+ * @param {function} [options.setup] one-time callback triggered the first time a query is matched
+ * @param {boolean} [options.deferSetup=false] should the setup callback be run immediately, rather than first time query is matched?
+ * @constructor
+ */
+function QueryHandler(options) {
+    this.options = options;
+    !options.deferSetup && this.setup();
+}
+
+QueryHandler.prototype = {
+
+    constructor : QueryHandler,
+
+    /**
+     * coordinates setup of the handler
+     *
+     * @function
+     */
+    setup : function() {
+        if(this.options.setup) {
+            this.options.setup();
+        }
+        this.initialised = true;
+    },
+
+    /**
+     * coordinates setup and triggering of the handler
+     *
+     * @function
+     */
+    on : function() {
+        !this.initialised && this.setup();
+        this.options.match && this.options.match();
+    },
+
+    /**
+     * coordinates the unmatch event for the handler
+     *
+     * @function
+     */
+    off : function() {
+        this.options.unmatch && this.options.unmatch();
+    },
+
+    /**
+     * called when a handler is to be destroyed.
+     * delegates to the destroy or unmatch callbacks, depending on availability.
+     *
+     * @function
+     */
+    destroy : function() {
+        this.options.destroy ? this.options.destroy() : this.off();
+    },
+
+    /**
+     * determines equality by reference.
+     * if object is supplied compare options, if function, compare match callback
+     *
+     * @function
+     * @param {object || function} [target] the target for comparison
+     */
+    equals : function(target) {
+        return this.options === target || this.options.match === target;
+    }
+
+};
+
+module.exports = QueryHandler;
+
+
+/***/ }),
+/* 116 */,
+/* 117 */,
+/* 118 */,
+/* 119 */,
+/* 120 */,
+/* 121 */,
+/* 122 */,
+/* 123 */,
+/* 124 */,
+/* 125 */,
+/* 126 */,
+/* 127 */,
+/* 128 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
+            (typeof self !== "undefined" && self) ||
+            window;
+var apply = Function.prototype.apply;
+
+// DOM APIs, for completeness
+
+exports.setTimeout = function() {
+  return new Timeout(apply.call(setTimeout, scope, arguments), clearTimeout);
+};
+exports.setInterval = function() {
+  return new Timeout(apply.call(setInterval, scope, arguments), clearInterval);
+};
+exports.clearTimeout =
+exports.clearInterval = function(timeout) {
+  if (timeout) {
+    timeout.close();
+  }
+};
+
+function Timeout(id, clearFn) {
+  this._id = id;
+  this._clearFn = clearFn;
+}
+Timeout.prototype.unref = Timeout.prototype.ref = function() {};
+Timeout.prototype.close = function() {
+  this._clearFn.call(scope, this._id);
+};
+
+// Does not start the time, just sets up the members needed.
+exports.enroll = function(item, msecs) {
+  clearTimeout(item._idleTimeoutId);
+  item._idleTimeout = msecs;
+};
+
+exports.unenroll = function(item) {
+  clearTimeout(item._idleTimeoutId);
+  item._idleTimeout = -1;
+};
+
+exports._unrefActive = exports.active = function(item) {
+  clearTimeout(item._idleTimeoutId);
+
+  var msecs = item._idleTimeout;
+  if (msecs >= 0) {
+    item._idleTimeoutId = setTimeout(function onTimeout() {
+      if (item._onTimeout)
+        item._onTimeout();
+    }, msecs);
+  }
+};
+
+// setimmediate attaches itself to the global object
+__webpack_require__(129);
+// On some exotic environments, it's not clear which object `setimmediate` was
+// able to install onto.  Search each possibility in the same order as the
+// `setimmediate` library.
+exports.setImmediate = (typeof self !== "undefined" && self.setImmediate) ||
+                       (typeof global !== "undefined" && global.setImmediate) ||
+                       (this && this.setImmediate);
+exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
+                         (typeof global !== "undefined" && global.clearImmediate) ||
+                         (this && this.clearImmediate);
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(3)))
+
+/***/ }),
+/* 129 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
+    "use strict";
+
+    if (global.setImmediate) {
+        return;
+    }
+
+    var nextHandle = 1; // Spec says greater than zero
+    var tasksByHandle = {};
+    var currentlyRunningATask = false;
+    var doc = global.document;
+    var registerImmediate;
+
+    function setImmediate(callback) {
+      // Callback can either be a function or a string
+      if (typeof callback !== "function") {
+        callback = new Function("" + callback);
+      }
+      // Copy function arguments
+      var args = new Array(arguments.length - 1);
+      for (var i = 0; i < args.length; i++) {
+          args[i] = arguments[i + 1];
+      }
+      // Store and register the task
+      var task = { callback: callback, args: args };
+      tasksByHandle[nextHandle] = task;
+      registerImmediate(nextHandle);
+      return nextHandle++;
+    }
+
+    function clearImmediate(handle) {
+        delete tasksByHandle[handle];
+    }
+
+    function run(task) {
+        var callback = task.callback;
+        var args = task.args;
+        switch (args.length) {
+        case 0:
+            callback();
+            break;
+        case 1:
+            callback(args[0]);
+            break;
+        case 2:
+            callback(args[0], args[1]);
+            break;
+        case 3:
+            callback(args[0], args[1], args[2]);
+            break;
+        default:
+            callback.apply(undefined, args);
+            break;
+        }
+    }
+
+    function runIfPresent(handle) {
+        // From the spec: "Wait until any invocations of this algorithm started before this one have completed."
+        // So if we're currently running a task, we'll need to delay this invocation.
+        if (currentlyRunningATask) {
+            // Delay by doing a setTimeout. setImmediate was tried instead, but in Firefox 7 it generated a
+            // "too much recursion" error.
+            setTimeout(runIfPresent, 0, handle);
+        } else {
+            var task = tasksByHandle[handle];
+            if (task) {
+                currentlyRunningATask = true;
+                try {
+                    run(task);
+                } finally {
+                    clearImmediate(handle);
+                    currentlyRunningATask = false;
+                }
+            }
+        }
+    }
+
+    function installNextTickImplementation() {
+        registerImmediate = function(handle) {
+            process.nextTick(function () { runIfPresent(handle); });
+        };
+    }
+
+    function canUsePostMessage() {
+        // The test against `importScripts` prevents this implementation from being installed inside a web worker,
+        // where `global.postMessage` means something completely different and can't be used for this purpose.
+        if (global.postMessage && !global.importScripts) {
+            var postMessageIsAsynchronous = true;
+            var oldOnMessage = global.onmessage;
+            global.onmessage = function() {
+                postMessageIsAsynchronous = false;
+            };
+            global.postMessage("", "*");
+            global.onmessage = oldOnMessage;
+            return postMessageIsAsynchronous;
+        }
+    }
+
+    function installPostMessageImplementation() {
+        // Installs an event handler on `global` for the `message` event: see
+        // * https://developer.mozilla.org/en/DOM/window.postMessage
+        // * http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#crossDocumentMessages
+
+        var messagePrefix = "setImmediate$" + Math.random() + "$";
+        var onGlobalMessage = function(event) {
+            if (event.source === global &&
+                typeof event.data === "string" &&
+                event.data.indexOf(messagePrefix) === 0) {
+                runIfPresent(+event.data.slice(messagePrefix.length));
+            }
+        };
+
+        if (global.addEventListener) {
+            global.addEventListener("message", onGlobalMessage, false);
+        } else {
+            global.attachEvent("onmessage", onGlobalMessage);
+        }
+
+        registerImmediate = function(handle) {
+            global.postMessage(messagePrefix + handle, "*");
+        };
+    }
+
+    function installMessageChannelImplementation() {
+        var channel = new MessageChannel();
+        channel.port1.onmessage = function(event) {
+            var handle = event.data;
+            runIfPresent(handle);
+        };
+
+        registerImmediate = function(handle) {
+            channel.port2.postMessage(handle);
+        };
+    }
+
+    function installReadyStateChangeImplementation() {
+        var html = doc.documentElement;
+        registerImmediate = function(handle) {
+            // Create a <script> element; its readystatechange event will be fired asynchronously once it is inserted
+            // into the document. Do so, thus queuing up the task. Remember to clean up once it's been called.
+            var script = doc.createElement("script");
+            script.onreadystatechange = function () {
+                runIfPresent(handle);
+                script.onreadystatechange = null;
+                html.removeChild(script);
+                script = null;
+            };
+            html.appendChild(script);
+        };
+    }
+
+    function installSetTimeoutImplementation() {
+        registerImmediate = function(handle) {
+            setTimeout(runIfPresent, 0, handle);
+        };
+    }
+
+    // If supported, we should attach to the prototype of global, since that is where setTimeout et al. live.
+    var attachTo = Object.getPrototypeOf && Object.getPrototypeOf(global);
+    attachTo = attachTo && attachTo.setTimeout ? attachTo : global;
+
+    // Don't get fooled by e.g. browserify environments.
+    if ({}.toString.call(global.process) === "[object process]") {
+        // For Node.js before 0.9
+        installNextTickImplementation();
+
+    } else if (canUsePostMessage()) {
+        // For non-IE10 modern browsers
+        installPostMessageImplementation();
+
+    } else if (global.MessageChannel) {
+        // For web workers, where supported
+        installMessageChannelImplementation();
+
+    } else if (doc && "onreadystatechange" in doc.createElement("script")) {
+        // For IE 6–8
+        installReadyStateChangeImplementation();
+
+    } else {
+        // For older browsers
+        installSetTimeoutImplementation();
+    }
+
+    attachTo.setImmediate = setImmediate;
+    attachTo.clearImmediate = clearImmediate;
+}(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(3), __webpack_require__(130)))
+
+/***/ }),
+/* 130 */
+/***/ (function(module, exports) {
+
+// shim for using process in browser
+var process = module.exports = {};
+
+// cached from whatever global is present so that test runners that stub it
+// don't break things.  But we need to wrap it in a try catch in case it is
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+// function because try/catches deoptimize in certain engines.
+
+var cachedSetTimeout;
+var cachedClearTimeout;
+
+function defaultSetTimout() {
+    throw new Error('setTimeout has not been defined');
+}
+function defaultClearTimeout () {
+    throw new Error('clearTimeout has not been defined');
+}
+(function () {
+    try {
+        if (typeof setTimeout === 'function') {
+            cachedSetTimeout = setTimeout;
+        } else {
+            cachedSetTimeout = defaultSetTimout;
+        }
+    } catch (e) {
+        cachedSetTimeout = defaultSetTimout;
+    }
+    try {
+        if (typeof clearTimeout === 'function') {
+            cachedClearTimeout = clearTimeout;
+        } else {
+            cachedClearTimeout = defaultClearTimeout;
+        }
+    } catch (e) {
+        cachedClearTimeout = defaultClearTimeout;
+    }
+} ())
+function runTimeout(fun) {
+    if (cachedSetTimeout === setTimeout) {
+        //normal enviroments in sane situations
+        return setTimeout(fun, 0);
+    }
+    // if setTimeout wasn't available but was latter defined
+    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+        cachedSetTimeout = setTimeout;
+        return setTimeout(fun, 0);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedSetTimeout(fun, 0);
+    } catch(e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+            return cachedSetTimeout.call(null, fun, 0);
+        } catch(e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+            return cachedSetTimeout.call(this, fun, 0);
+        }
+    }
+
+
+}
+function runClearTimeout(marker) {
+    if (cachedClearTimeout === clearTimeout) {
+        //normal enviroments in sane situations
+        return clearTimeout(marker);
+    }
+    // if clearTimeout wasn't available but was latter defined
+    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+        cachedClearTimeout = clearTimeout;
+        return clearTimeout(marker);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedClearTimeout(marker);
+    } catch (e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+            return cachedClearTimeout.call(null, marker);
+        } catch (e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+            return cachedClearTimeout.call(this, marker);
+        }
+    }
+
+
+
+}
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+    if (!draining || !currentQueue) {
+        return;
+    }
+    draining = false;
+    if (currentQueue.length) {
+        queue = currentQueue.concat(queue);
+    } else {
+        queueIndex = -1;
+    }
+    if (queue.length) {
+        drainQueue();
+    }
+}
+
+function drainQueue() {
+    if (draining) {
+        return;
+    }
+    var timeout = runTimeout(cleanUpNextTick);
+    draining = true;
+
+    var len = queue.length;
+    while(len) {
+        currentQueue = queue;
+        queue = [];
+        while (++queueIndex < len) {
+            if (currentQueue) {
+                currentQueue[queueIndex].run();
+            }
+        }
+        queueIndex = -1;
+        len = queue.length;
+    }
+    currentQueue = null;
+    draining = false;
+    runClearTimeout(timeout);
+}
+
+process.nextTick = function (fun) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args[i - 1] = arguments[i];
+        }
+    }
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
+        runTimeout(drainQueue);
+    }
+};
+
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+};
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) { return [] }
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+process.umask = function() { return 0; };
+
+
+/***/ }),
+/* 131 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+/* 132 */
+/***/ (function(module, exports) {
+
+// Module
+var code = " <div id=\"site\"> <header id=\"header\"> <a href=\"{{docit.base}}\" class=\"navbar\"> <img src=\"{{docit.base + docit.logo}}\" alt=\"Home\" class=\"logo\"/> <span>{{docit.title}}</span> </a> <ul> <li s-for=\"nav in docit.themeConfig.nav\"> <a target=\"{{nav.target || '_blank'}}\" href=\"{{nav.link}}\"> {{nav.text}} </a> </li> </ul> </header> <aside s-if=\"isShowSidebar\" id=\"sidebar\" class=\"sidebar\"> <tree treeData=\"{{sidebar}}\" selectedNodes=\"{{selectedNodes}}\"> <router-link s-if=\"treeNode.path\" to=\"{{getPath(treeNode)}}\">{{treeNode.title}}</router-link> <span s-else>{{treeNode.title}}</span> </tree> </aside> <drawer s-else class=\"sidebar\" style=\"width:0\"> <tree treeData=\"{{sidebar}}\" selectedNodes=\"{{selectedNodes}}\" style=\"padding:50px 0\"> <router-link s-if=\"treeNode.path\" to=\"{{getPath(treeNode)}}\">{{treeNode.title}}</router-link> <span s-else>{{treeNode.title}}</span> </tree> </drawer> <content-area docit=\"{{docit}}\" class=\"{{isShowSidebar ? '' : 'hidden'}}\"></content-area> </div> ";
+// Exports
+module.exports = code;
+
+/***/ }),
+/* 133 */
+/***/ (function(module, exports) {
+
+// Module
+var code = " <article id=\"content\"> <div id=\"router-view\" class=\"router-view {{isShowToc ? '' : 'hidden'}}\" s-ref=\"view\"> {{docit.content | raw}} </div> <aside class=\"toc\" s-if=\"isShowToc\"> <tree treeData=\"{{toc}}\" selectedNodes=\"{{selectedNodes}}\"> <a href=\"{{getHash(treeNode.hash)}}\">{{treeNode.title}}</a> </tree> </aside> </article> ";
+// Exports
+module.exports = code;
+
+/***/ }),
+/* 134 */
+/***/ (function(module, exports) {
+
+// Module
+var code = " <ul class=\"tree\"> <tree-node s-for=\"treeNode in treeData.children\" treeNode=\"{{treeNode}}\" selectedNodes=\"{{selectedNodes}}\"> <slot var-treeNode=\"treeNode\"></slot> </tree-node> </ul> ";
+// Exports
+module.exports = code;
+
+/***/ }),
+/* 135 */
+/***/ (function(module, exports) {
+
+// Module
+var code = " <li data-id=\"{{getNodeId(treeNode)}}\"> <slot var-treeNode=\"treeNode\"></slot> <ul s-if=\"treeNode.children\"> <li data-id=\"{{getNodeId(treeNode2)}}\" s-for=\"treeNode2 in treeNode.children\"> <slot var-treeNode=\"treeNode2\"></slot> <ul s-if=\"treeNode2.children\"> <li data-id=\"{{getNodeId(treeNode3)}}\" s-for=\"treeNode3 in treeNode2.children\"> <slot var-treeNode=\"treeNode3\"></slot> <ul s-if=\"treeNode3.children\"> <li data-id=\"{{getNodeId(treeNode4)}}\" s-for=\"treeNode4 in treeNode3.children\"> <slot var-treeNode=\"treeNode4\"></slot> </li> </ul> </li> </ul> </li> </ul> </li> ";
+// Exports
+module.exports = code;
+
+/***/ }),
+/* 136 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+/* 137 */
+/***/ (function(module, exports) {
+
+// Module
+var code = " <div class=\"drawer-wrapper\"> <div class=\"drawer drawer-left {{isOpened ? 'drawer-open' : ''}}\"> <div class=\"drawer-mask\" on-click=\"onClick\"></div> <div class=\"drawer-content-wrapper\"> <div class=\"drawer-content\"><slot></slot></div> <div class=\"drawer-handle\" on-click=\"onClick\"> <i class=\"drawer-handle-icon\"></i> </div> </div> </div> </div> ";
+// Exports
+module.exports = code;
+
+/***/ }),
+/* 138 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+/* 139 */
+/***/ (function(module, exports) {
+
+// Module
+var code = " <section class=\"code-box {{isExpand ? 'expand' : ''}}\"> <section class=\"code-box-demo\"> <slot name=\"code-preview\"></slot> </section> <section class=\"code-box-meta\"> <slot name=\"text-place-holder\"></slot> <span class=\"code-expand-icon\" on-click=\"toggleExpand\"> <img alt=\"expand code\" src=\"https://gw.alipayobjects.com/zos/rmsportal/wSAkBuJFbdxsosKKpqyq.svg\" class=\"{{isExpand ? 'code-expand-icon-hide':'code-expand-icon-show'}}\"> <img alt=\"expand code\" src=\"https://gw.alipayobjects.com/zos/rmsportal/OpROPHYqWmrMDBFMZtKF.svg\" class=\"{{isExpand ? 'code-expand-icon-show' : 'code-expand-icon-hide'}}\"> </span> </section> <section class=\"highlight-wrapper {{isExpand ? 'highlight-wrapper-expand' : ''}}\"> <slot name=\"code-place-holder\" s-if=\"isExpand\"></slot> </section> </section> ";
+// Exports
+module.exports = code;
+
+/***/ }),
+/* 140 */,
+/* 141 */
+/***/ (function(module, exports) {
+
+// Module
+var code = " <div>Not Found</div> ";
+// Exports
+module.exports = code;
+
+/***/ }),
+/* 142 */,
+/* 143 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "default", function() { return /* binding */ client_entry_App; });
+
+// EXTERNAL MODULE: ../node_modules/san-component/src/index.js
+var src = __webpack_require__(1);
+
+// EXTERNAL MODULE: /Volumes/Source/san/santd/node_modules/san/dist/san.dev.js
+var san_dev = __webpack_require__(0);
+
+// EXTERNAL MODULE: /Volumes/Source/san/santd/node_modules/@san-docit/theme-default/layouts/layout.san
+var layout = __webpack_require__(79);
+var layout_default = /*#__PURE__*/__webpack_require__.n(layout);
+
+// EXTERNAL MODULE: ../src/common/hub.js
+var hub = __webpack_require__(9);
+
+// EXTERNAL MODULE: /Volumes/Source/san/santd/node_modules/@san-docit/theme-default/global-components/codebox.san
+var codebox = __webpack_require__(83);
+var codebox_default = /*#__PURE__*/__webpack_require__.n(codebox);
+
+// CONCATENATED MODULE: ../src/common/register-components.js
+
+
+;
+const components = {
+  "codebox": codebox_default.a
+};
+Object(src["b" /* registerComponents */])(components);
+// EXTERNAL MODULE: /Volumes/Source/san/santd/docs/.sandocit/styles/index.less
+var styles = __webpack_require__(140);
+
+// CONCATENATED MODULE: /Volumes/Source/san/santd/node_modules/@san-docit/theme-default/styles/index.less
+// extracted by mini-css-extract-plugin
+
+// CONCATENATED MODULE: ../src/index.js
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+class src_Index extends san_dev["Component"] {}
+
+_defineProperty(src_Index, "components", {
+  layout: layout_default.a
+});
+
+_defineProperty(src_Index, "dataTypes", {
+  docit: san_dev["DataTypes"].object
+});
+
+_defineProperty(src_Index, "template", '<layout docit="{{docit}}"><layout>');
+
+;
+// EXTERNAL MODULE: ../src/common/san-router.js
+var san_router = __webpack_require__(6);
+var san_router_default = /*#__PURE__*/__webpack_require__.n(san_router);
+
+// EXTERNAL MODULE: /Volumes/Source/san/santd/node_modules/NProgress/nprogress.js
+var nprogress = __webpack_require__(10);
+var nprogress_default = /*#__PURE__*/__webpack_require__.n(nprogress);
+
+// CONCATENATED MODULE: ../src/common/utils.js
+const base = (() => {
+  const baseUrl = '/santd/';
+  const base = baseUrl.length > 1 ? baseUrl.slice(0, -1) : '';
+  return base;
+})();
+
+const treeWalk = (root, callback) => {
+  if (!root) {
+    return;
+  }
+
+  callback(root);
+
+  if (!root.children) {
+    return;
+  }
+
+  root.children.forEach(item => {
+    callback(item);
+
+    if (item.children) {
+      treeWalk(item, callback);
+    }
+  });
+};
+
+/* harmony default export */ var utils = ({
+  base,
+  treeWalk
+});
+// EXTERNAL MODULE: /Volumes/Source/san/santd/node_modules/@san-docit/theme-default/layouts/not-found.san
+var not_found = __webpack_require__(84);
+var not_found_default = /*#__PURE__*/__webpack_require__.n(not_found);
+
+// CONCATENATED MODULE: /Volumes/Source/san/santd/node_modules/nprogress/nprogress.css
+// extracted by mini-css-extract-plugin
+
+// CONCATENATED MODULE: ../src/router/index.js
+
+
+
+
+
+
+const router_route = new san_router_default.a.Router({
+  mode: 'html5'
+});
+san_router_default.a.router = router_route; // Webpack Inject
+
+const config = {
+  "base": "/santd/",
+  "title": "santd",
+  "head": [["link", {
+    "rel": "icon",
+    "href": "/favicon.ico"
+  }]],
+  "logo": "logo.svg",
+  "open": true,
+  "theme": "@san-docit/theme-default",
+  "themeConfig": {
+    "nav": [{
+      "text": "San",
+      "link": "https://baidu.github.io/san/"
+    }, {
+      "text": "Santd",
+      "link": "https://ecomfe.github.io/santd/"
+    }],
+    "sidebar": {
+      "/": {
+        "children": [{
+          "path": "/introduce/",
+          "filename": "/Volumes/Source/san/santd/docs/introduce.md",
+          "title": "Ant Design of San"
+        }, {
+          "path": "/",
+          "filename": "/Volumes/Source/san/santd/docs/quickstart.md",
+          "title": "快速上手"
+        }, {
+          "path": "/theme/",
+          "filename": "/Volumes/Source/san/santd/docs/theme.md",
+          "title": "定制主题"
+        }, {
+          "path": "/changelog/",
+          "filename": "/Volumes/Source/san/santd/docs/changelog.md",
+          "title": "更新日志"
+        }, {
+          "path": "/i18n/",
+          "filename": "/Volumes/Source/san/santd/docs/i18n.md",
+          "title": "国际化"
+        }, {
+          "title": "组件",
+          "children": [{
+            "title": "通用",
+            "children": [{
+              "path": "/components/button/",
+              "filename": "/Volumes/Source/san/santd/src/button/docs/index.js",
+              "title": "Button 按钮"
+            }, {
+              "path": "/components/icon/",
+              "filename": "/Volumes/Source/san/santd/src/icon/docs/index.js",
+              "title": "Icon 图标"
+            }]
+          }, {
+            "title": "布局",
+            "children": [{
+              "path": "/components/grid/",
+              "filename": "/Volumes/Source/san/santd/src/grid/docs/index.js",
+              "title": "Grid 栅格"
+            }]
+          }, {
+            "title": "导航",
+            "children": [{
+              "path": "/components/affix/",
+              "filename": "/Volumes/Source/san/santd/src/affix/docs/index.js",
+              "title": "Affix 固钉"
+            }]
+          }]
+        }]
+      }
+    }
+  },
+  "headHtmlSnippet": "<link rel=\"icon\" href=\"/favicon.ico\"></link>"
+};
+const router_components = {
+  "/introduce/": () => __webpack_require__.e(/* import() */ 19).then(__webpack_require__.t.bind(null, 119, 7)),
+  "/": () => __webpack_require__.e(/* import() */ 20).then(__webpack_require__.t.bind(null, 120, 7)),
+  "/theme/": () => __webpack_require__.e(/* import() */ 21).then(__webpack_require__.t.bind(null, 121, 7)),
+  "/changelog/": () => __webpack_require__.e(/* import() */ 17).then(__webpack_require__.t.bind(null, 122, 7)),
+  "/i18n/": () => __webpack_require__.e(/* import() */ 18).then(__webpack_require__.t.bind(null, 123, 7)),
+  "/components/button/": () => Promise.all(/* import() */[__webpack_require__.e(2), __webpack_require__.e(13)]).then(__webpack_require__.bind(null, 127)),
+  "/components/icon/": () => Promise.all(/* import() */[__webpack_require__.e(2), __webpack_require__.e(14)]).then(__webpack_require__.bind(null, 124)),
+  "/components/grid/": () => __webpack_require__.e(/* import() */ 15).then(__webpack_require__.bind(null, 125)),
+  "/components/affix/": () => __webpack_require__.e(/* import() */ 16).then(__webpack_require__.bind(null, 126))
+};
+const router_base = utils.base;
+const sidebar = config.themeConfig.sidebar;
+
+const addRouter = node => {
+  if (!node || !node.path) {
+    return;
+  }
+
+  const path = node.path;
+  let component = router_components[path] ? router_components[path] : /\.js/.test(node.filename) ? __webpack_require__(142)(node.filename) : '';
+
+  if (component) {
+    san_router["router"].add({
+      rule: router_base + path,
+      Component: component,
+      target: '#router-view'
+    });
+  }
+};
+
+const parseRouter = (root, callback) => {
+  if (!root) {
+    return;
+  }
+
+  callback(root);
+
+  if (!root.children) {
+    return;
+  }
+
+  root.children.forEach(item => {
+    callback(item);
+
+    if (item && item.children) {
+      parseRouter(item, callback);
+    }
+  });
+}; // router.add 注册路由
+
+
+Object.keys(sidebar).forEach(path => {
+  parseRouter(sidebar[path], node => addRouter(node));
+});
+const routes = [{
+  path: '.*',
+  component: not_found_default.a
+}];
+routes.forEach(route => {
+  san_router["router"].add({
+    rule: router_base + route.path,
+    Component: route.component,
+    target: '#router-view'
+  });
+});
+san_router["router"].listen(e => {
+  // if (!components[e.path.substr(base.length)]) {
+  //     // e.stop();
+  //     // this.locator.stop();
+  //     setTimeout(() => {this.locator.redirect(base + 'notfound/');}, 0);
+  //     return;
+  // }
+  if (e.path === e.referrer) {
+    e.stop();
+    return;
+  } // 加载进度条
+
+
+  if (nprogress_default.a.isRendered) {
+    nprogress_default.a.remove();
+  }
+
+  nprogress_default.a.inc();
+  hub["a" /* default */].fire('RouterChanged', e);
+});
+san_router["router"].afterEach(e => {
+  nprogress_default.a.done(true);
+});
+/* harmony default export */ var router = (san_router["router"]);
+// CONCATENATED MODULE: ../src/client-entry.js
+function client_entry_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+class client_entry_App extends src["a" /* SanComponent */] {
+  attached() {
+    router.start();
+  }
+
+}
+
+client_entry_defineProperty(client_entry_App, "components", {
+  index: src_Index
+});
+
+client_entry_defineProperty(client_entry_App, "template", '<index docit="{{docit}}"><index>');
+
+client_entry_defineProperty(client_entry_App, "computed", {
+  docit() {
+    // webpack.DefinePlugin SAN_DOCIT
+    return {
+      "base": "/santd/",
+      "title": "santd",
+      "head": [["link", {
+        "rel": "icon",
+        "href": "/favicon.ico"
+      }]],
+      "logo": "logo.svg",
+      "open": true,
+      "theme": "@san-docit/theme-default",
+      "themeConfig": {
+        "nav": [{
+          "text": "San",
+          "link": "https://baidu.github.io/san/"
+        }, {
+          "text": "Santd",
+          "link": "https://ecomfe.github.io/santd/"
+        }],
+        "sidebar": {
+          "/": {
+            "children": [{
+              "path": "/introduce/",
+              "filename": "/Volumes/Source/san/santd/docs/introduce.md",
+              "title": "Ant Design of San"
+            }, {
+              "path": "/",
+              "filename": "/Volumes/Source/san/santd/docs/quickstart.md",
+              "title": "快速上手"
+            }, {
+              "path": "/theme/",
+              "filename": "/Volumes/Source/san/santd/docs/theme.md",
+              "title": "定制主题"
+            }, {
+              "path": "/changelog/",
+              "filename": "/Volumes/Source/san/santd/docs/changelog.md",
+              "title": "更新日志"
+            }, {
+              "path": "/i18n/",
+              "filename": "/Volumes/Source/san/santd/docs/i18n.md",
+              "title": "国际化"
+            }, {
+              "title": "组件",
+              "children": [{
+                "title": "通用",
+                "children": [{
+                  "path": "/components/button/",
+                  "filename": "/Volumes/Source/san/santd/src/button/docs/index.js",
+                  "title": "Button 按钮"
+                }, {
+                  "path": "/components/icon/",
+                  "filename": "/Volumes/Source/san/santd/src/icon/docs/index.js",
+                  "title": "Icon 图标"
+                }]
+              }, {
+                "title": "布局",
+                "children": [{
+                  "path": "/components/grid/",
+                  "filename": "/Volumes/Source/san/santd/src/grid/docs/index.js",
+                  "title": "Grid 栅格"
+                }]
+              }, {
+                "title": "导航",
+                "children": [{
+                  "path": "/components/affix/",
+                  "filename": "/Volumes/Source/san/santd/src/affix/docs/index.js",
+                  "title": "Affix 固钉"
+                }]
+              }]
+            }]
+          }
+        }
+      },
+      "headHtmlSnippet": "<link rel=\"icon\" href=\"/favicon.ico\"></link>"
+    };
+  }
+
+});
+
+; // 组件反解：传入el
+
+new client_entry_App({
+  el: document.getElementById('site')
+});
+
+/***/ })
+]]);
