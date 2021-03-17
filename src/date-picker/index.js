@@ -6,10 +6,10 @@
 import './style/index';
 import Calendar from '../calendar/src/calendar';
 import MonthCalendar from '../calendar/src/monthCalendar';
-import RangePicker from './rangePicker';
-import createPicker from './createPicker';
+import RangePicker from './RangePicker';
+import createPicker from './CreatePicker';
 import wrapPicker from './wrapPicker';
-import WeekPicker from './weekPicker';
+import WeekPicker from './WeekPicker';
 
 const DatePicker = wrapPicker(createPicker(Calendar), 'date');
 

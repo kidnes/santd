@@ -10,16 +10,16 @@ TimePicker 浮层中的列会随着 `format` 变化，当略去 `format` 中的�
     </div>
 </template>
 <script>
-import timepicker from 'santd/timepicker';
-import moment from 'moment';
+import dayjs from 'dayjs';
+import {TimePicker} from 'santd';
 
 export default {
     components: {
-        's-timepicker': timepicker
+        's-timepicker': TimePicker
     },
     initData() {
         return {
-            defaultValue: moment('12:08', 'HH:mm')
+            defaultValue: dayjs('12:08', 'HH:mm')
         };
     },
     handleChange(param) {

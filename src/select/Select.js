@@ -357,7 +357,7 @@ export default san.defineComponent({
             dropdownMatchSelectWidth: true,
             getPopupContainer: () => document.body,
             labelInValue: false,
-            optionFilterProp: 'value',
+            optionFilterProp: 'children',
             showSearch: false,
             size: 'default',
             tokenSeparators: [],
@@ -703,7 +703,7 @@ export default san.defineComponent({
 
         const key = item.value;
 
-        if (modeConfig.combobox) {
+        if (modeConfig.combobox || modeConfig.single) {
             this.setInputValue(key, false);
         }
 
