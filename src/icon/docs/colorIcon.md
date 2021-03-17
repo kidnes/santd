@@ -1,7 +1,6 @@
-<text lang="cn">
+<codebox>
 #### 多色图标
 通过设置`theme`的属性为 `twoTone` 来渲染双色图标，并且可以设置主题色。
-</text>
 
 ```html
 <template>
@@ -20,3 +19,4 @@ export default {
 }
 </script>
 ```
+</codebox>

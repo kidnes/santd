@@ -11,7 +11,7 @@ module.exports = {
     base: '/santd/',
     title: 'santd',
     head: [
-        ['link', {rel: 'icon', href: '/favicon.ico'}]
+        ['link', {rel: 'icon', href: '/santd/logo.svg'}]
     ],
     logo: 'logo.svg',
 
