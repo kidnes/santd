@@ -41,11 +41,10 @@
     </div>
 </template>
 <script>
-import moment from 'moment';
-import Calendar from 'santd/calendar';
-import Grid from 'santd/grid';
-import Radio from 'santd/radio';
-import Select from 'santd/select';
+import dayjs from 'dayjs';
+import {Calendar, Grid, Radio, Select} from 'santd';
+
+dayjs.extend(require('dayjs/plugin/localeData'));
 
 export default {
     components: {

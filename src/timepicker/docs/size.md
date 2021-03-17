@@ -12,16 +12,16 @@
     </div>
 </template>
 <script>
-import timepicker from 'santd/timepicker';
-import moment from 'moment';
+import dayjs from 'dayjs';
+import {TimePicker} from 'santd';
 
 export default {
     components: {
-        's-timepicker': timepicker
+        's-timepicker': TimePicker
     },
     initData() {
         return {
-            defaultValue: moment('2:08:23', 'HH:mm:ss')
+            defaultValue: dayjs('2:08:23', 'HH:mm:ss')
         };
     }
 }

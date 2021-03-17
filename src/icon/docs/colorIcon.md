@@ -11,7 +11,8 @@
 </div>
 </template>
 <script>
-import Icon from 'santd/icon';
+import {Icon} from 'santd';
+
 export default {
     components: {
         's-icon': Icon
